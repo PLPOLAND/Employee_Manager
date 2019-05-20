@@ -10,4 +10,5 @@ public class EmployeeManagerApplication {
 		SpringApplication.run(EmployeeManagerApplication.class, args);
 	}
 
+	// testuje commit - Marcin
 }
