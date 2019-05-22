@@ -10,4 +10,9 @@ public class LoginPageController {
 	public String loadLoginPage() {
 		return "loginPage";
 	}
+
+	@RequestMapping("/home")
+	public String loadMainPage() {
+		return "homePage";
+	}
 }
