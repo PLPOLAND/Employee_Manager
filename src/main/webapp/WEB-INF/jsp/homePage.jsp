@@ -18,22 +18,24 @@
 
 <body>
 
-    <div class="container login-container">
-        <div class="login-form">
-            <h3>Logowanie do systemu</h3>
-            <form action="login" method="POST">
-                <div class="login-field">
-                    <input type="text" class="form-control" placeholder="Twój Login *" value="" name="login" />
-                </div>
-                <div class="login-field">
-                    <input type="password" class="form-control" placeholder="Twoje Hasło *" value="" name="pass" />
-                </div>
-                <div class="login-field btn-field">
-                    <input type="submit" class="btnSubmit" value="Zaloguj" />
-                </div>
-            </form>
+    <div class="container">
+        <div class="banner">
+            <div class="menu">
+                <ol>
+                    <a href="#"><li>poz1</li></a>
+                    <a href="#"><li>poz2</li></a>
+                    <a href="/"><li>poz3</li></a>
+                </ol>
+            </div>
+            <div class="dane">
+                Imie
+            </div>
+        </div>
+        <div class="page">
+            
         </div>
     </div>
+
 </body>
 
 </html>
