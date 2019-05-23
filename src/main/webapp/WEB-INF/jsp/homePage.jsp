@@ -32,7 +32,28 @@
             </div>
         </div>
         <div class="page">
-            
+            <div class="user-line">
+                <div class="user-pole">Imie</div>
+                <div class="user-pole">Nazwisko</div>
+                <div class="user-pole">email</div>
+                <div class="user-pole">nr konta bankowego</div>
+                <div class="user-pole">wyplata NETTO</div>
+                <div class="user-pole">wyplata BRUTTO</div>
+                <div class="user-pole">stanowisko</div>
+                <div class="user-pole">typ umowy</div>
+                <div class="user-pole"></div>
+            </div>
+            <div class="user-line">
+                <div class="user-pole">Marek</div>
+                <div class="user-pole">Pałdyna</div>
+                <div class="user-pole">poleczek@mojkrafcik.cba.pl</div>
+                <div class="user-pole">100023001230021312</div>
+                <div class="user-pole">11000</div>
+                <div class="user-pole">22000</div>
+                <div class="user-pole">Dyrektor</div>
+                <div class="user-pole">B2B</div>
+                <div class="user-pole"><input type="submit" class="" value="Zmien" /></div>
+            </div>
         </div>
     </div>
 
