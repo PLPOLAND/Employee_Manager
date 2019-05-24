@@ -6,11 +6,13 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
+	private String password;
 	private String account_number;
 	private double gross_salary; // brutto
 	private double net_salary; // netto
 	private String position; // stanowisko
 	private String contract_type;
+	private String account_type;
 
 	public int getId() {
 		return id;
@@ -30,6 +32,14 @@ public class User {
 
 	public String getSurname() {
 		return surname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setSurname(String surname) {
@@ -84,4 +94,13 @@ public class User {
 		this.contract_type = contract_type;
 	}
 
+	public String getAccount_type() {
+		return account_type;
+	}
+
+	public void setAccount_type(String account_type) {
+		this.account_type = account_type;
+	}
+
+	
 }
