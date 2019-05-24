@@ -15,13 +15,17 @@ public class UsersDAO {
 	@Autowired
 	private JdbcTemplate jdbc;
 
-	final String GET_ALL_USERS = "SELECT id_u, imie, nazwisko, haslo, mail, nr_konta, wyplata_netto, stanowisko, typy_umowy.nazwa_skr, typy_konta.nazwa FROM uzytkownicy LEFT JOIN typy_umowy ON uzytkownicy.id_tu=typy_umowy.id_t LEFT JOIN typy_konta ON uzytkownicy.id_tk = typy_konta.id_t "; 
+	final String GET_ALL_USERS = "SELECT uzytkownicy.id_u, imie, nazwisko, haslo, mail, nr_konta, wyplata_netto, stanowisko, typy_umowy.nazwa_skr, typy_konta.nazwa FROM uzytkownicy LEFT JOIN loginy ON loginy.id_u = uzytkownicy.id_u LEFT JOIN typy_umowy ON uzytkownicy.id_tu=typy_umowy.id_t LEFT JOIN typy_konta ON uzytkownicy.id_tk = typy_konta.id_t "; 
 	final String SET_USER = "INSERT INTO uzytk (imie,nazwisko) VALUES (?,?)"; // niedokonczone
 
 	public List<User> findAll() {
 
 		return this.jdbc.query(GET_ALL_USERS, getMap());
 
+	}
+
+	public List<User> find_to_login(String warunek){
+		return this.jdbc.query(GET_ALL_USERS + " WHERE " + warunek, getMap());//TODO: odpowiedznie zapytanie
 	}
 
 	public void addUser(String name, String surname) { // niedokonczone

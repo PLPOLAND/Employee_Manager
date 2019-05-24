@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Maj 2019, 10:48
--- Wersja serwera: 10.1.39-MariaDB
--- Wersja PHP: 7.1.29
+-- Czas generowania: 24 Maj 2019, 22:32
+-- Wersja serwera: 10.1.38-MariaDB
+-- Wersja PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `employee_manager`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `loginy`
+--
+
+CREATE TABLE `loginy` (
+  `id_u` int(11) NOT NULL,
+  `login` varchar(30) NOT NULL,
+  `haslo` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `loginy`
+--
+
+INSERT INTO `loginy` (`id_u`, `login`, `haslo`) VALUES
+(1, 'MarcinK', 'Marcinek'),
+(2, 'MarekP', 'MareczekP');
 
 -- --------------------------------------------------------
 
@@ -72,7 +92,6 @@ CREATE TABLE `uzytkownicy` (
   `id_u` int(11) NOT NULL,
   `imie` varchar(45) NOT NULL,
   `nazwisko` varchar(45) NOT NULL,
-  `haslo` varchar(45) NOT NULL,
   `mail` varchar(45) NOT NULL,
   `nr_konta` varchar(16) NOT NULL,
   `wyplata_netto` double NOT NULL,
@@ -85,13 +104,19 @@ CREATE TABLE `uzytkownicy` (
 -- Zrzut danych tabeli `uzytkownicy`
 --
 
-INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `haslo`, `mail`, `nr_konta`, `wyplata_netto`, `stanowisko`, `id_tu`, `id_tk`) VALUES
-(1, 'Marcin', 'Kos', 'abcd', 'abcd@gmail.com', '1111222233334444', 10000, 'Programista', 2, 2),
-(2, 'Marek', 'Pałdyna', 'lalala', 'marek@marek.pl', '5555444433331111', 9000, 'Programista', 3, 2);
+INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `mail`, `nr_konta`, `wyplata_netto`, `stanowisko`, `id_tu`, `id_tk`) VALUES
+(1, 'Marcin', 'Kos', 'abcd@gmail.com', '1111222233334444', 10000, 'Programista', 2, 2),
+(2, 'Marek', 'Pałdyna', 'marek@marek.pl', '5555444433331111', 9000, 'Programista', 3, 2);
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `loginy`
+--
+ALTER TABLE `loginy`
+  ADD PRIMARY KEY (`id_u`);
 
 --
 -- Indeksy dla tabeli `typy_konta`
@@ -138,6 +163,12 @@ ALTER TABLE `uzytkownicy`
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `loginy`
+--
+ALTER TABLE `loginy`
+  ADD CONSTRAINT `loginy_ibfk_1` FOREIGN KEY (`id_u`) REFERENCES `uzytkownicy` (`id_u`);
 
 --
 -- Ograniczenia dla tabeli `uzytkownicy`

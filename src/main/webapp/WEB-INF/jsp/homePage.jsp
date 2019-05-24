@@ -58,8 +58,8 @@
 					<div class="user-pole"> ${userval.getPosition()}</div>
 					<div class="user-pole"> ${userval.getContract_type()}</div>
 					<div class="user-pole">
-					<input type="submit" class="" value="Zmien" />
-				</div>
+						<input type="submit" class="" value="Zmien" />
+					</div>
 				</div>
 			</c:forEach>
 
