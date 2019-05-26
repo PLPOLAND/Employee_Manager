@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Maj 2019, 22:32
+-- Czas generowania: 26 Maj 2019, 11:52
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 7.3.4
 
@@ -29,18 +29,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `loginy` (
+  `ID` int(11) NOT NULL,
   `id_u` int(11) NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `haslo` varchar(30) NOT NULL
+  `login` varchar(30) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `haslo` varchar(30) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `loginy`
 --
 
-INSERT INTO `loginy` (`id_u`, `login`, `haslo`) VALUES
-(1, 'MarcinK', 'Marcinek'),
-(2, 'MarekP', 'MareczekP');
+INSERT INTO `loginy` (`ID`, `id_u`, `login`, `haslo`) VALUES
+(1, 1, 'MarcinK', 'MarcineK'),
+(2, 2, 'MarekP', 'MareczekP');
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,8 @@ INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `mail`, `nr_konta`, `wypl
 -- Indeksy dla tabeli `loginy`
 --
 ALTER TABLE `loginy`
-  ADD PRIMARY KEY (`id_u`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `id_u` (`id_u`);
 
 --
 -- Indeksy dla tabeli `typy_konta`
@@ -141,6 +143,12 @@ ALTER TABLE `uzytkownicy`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `loginy`
+--
+ALTER TABLE `loginy`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `typy_konta`
