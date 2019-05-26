@@ -54,12 +54,9 @@ public class Security{
         
         //TODO: hashThePass
 
-        if (pass == null) {
-            System.out.println("null");
-        }
+        
         // database.find_to_login("loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"");
         String warunek = "loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"";
-        System.out.println(warunek);
         List<User> resultUsers = database.find_to_login(warunek);
         // List<User> resultUsers = database.find_user_by_id(1);
         
