@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import PWJ.Employee_Manager.dao.UsersDAO;
 import PWJ.Employee_Manager.model.User;
+import PWJ.Employee_Manager.security.Security;
 
 
 @RestController
@@ -25,27 +26,55 @@ public class SesionTest {
 
     // wskazanie pod jakim adresem dostępna jest metoda
     @RequestMapping("/login")
-    public String doPost(HttpServletRequest request, HttpServletResponse response)
+    public String o(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // get request parameters for userID and password
-        String user = request.getParameter("login");
+        // String user = request.getParameter("login");
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user); //dodawanie pola do sesji
-        session.setMaxInactiveInterval(30 * 60); //usuniecie pol sesji po 30 minutach
+        // HttpSession session = request.getSession();
+        // session.setAttribute("user", user); //dodawanie pola do sesji
+        // session.setMaxInactiveInterval(30 * 60); //usuniecie pol sesji po 30 minutach
 
-        Cookie userName = new Cookie("user", user);//stworzenie nowego ciasteczka o nazwie user i wartości stringu user
-        userName.setMaxAge(30 * 60);//ustawienie czasu wygaśniecia ciasteczka
-        response.addCookie(userName);//dodanie ciasteczka do odpowiedzi
-        List<User> wynik = users.find_to_login("id_u = 2;");
-        if(wynik.isEmpty()){
-            //TODO
-            return "Brak takiego";
+        // Cookie userName = new Cookie("user", user);//stworzenie nowego ciasteczka o nazwie user i wartości stringu user
+        // userName.setMaxAge(30 * 60);//ustawienie czasu wygaśniecia ciasteczka
+        // response.addCookie(userName);//dodanie ciasteczka do odpowiedzi
+        // List<User> wynik = users.find_to_login("id_u = 2;");
+        // if(wynik.isEmpty()){
+        //     //TODO
+        //     return "Brak takiego";
+        // }
+        // else{
+        //     session.setAttribute("test", wynik.get(0).getName());
+        // }
+        // return session.getAttribute("test").toString() + " " + request.getParameter("login");
+        // return request.getParameter("login").toString();
+
+        Security security = new Security(request, users);
+        
+        if (security.login()){
+            return security.getUserName() + security.getUserSurName();
         }
         else{
-            session.setAttribute("test", wynik.get(0).getName());
+            return "Logowanie nie udane";
         }
-        return session.getAttribute("test").toString() + " " + request.getParameter("login");
+    }
+
+    /**
+     * 
+     * @param request
+     * @return
+     */
+    @RequestMapping("/after_login")
+    public String name(HttpServletRequest request) {
+        
+        Security sec = new Security(request, users);
+
+        if (sec.isLoged()) {
+            return "NR konta Użytkownika:" + sec.getFullUserData().getAccount_number();
+        } else {
+            return "Nie zalogowany";
+        }
+
     }
 }
