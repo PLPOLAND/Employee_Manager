@@ -23,6 +23,16 @@ public class MainController {
 	public String loadLoginPage() {
 		return "loginPage";
 	}
+	
+	@RequestMapping("/paymenthistory")
+	public String loadPaymentHistoryPage() {
+		return "paymentHistoryPage";
+	}
+	
+	@RequestMapping("/myaccount")
+	public String loadMyAccountPage() {
+		return "myAccountPage";
+	}
 
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request)
@@ -30,7 +40,7 @@ public class MainController {
 		Security security = new Security(request, userdao);
 
 		if (security.login()) {
-			return "redirect:/home";
+			return "redirect:/uhome";
 		} else {
 			return "redirect:/bad_login";
 		}
@@ -42,7 +52,7 @@ public class MainController {
 	}
 
 
-	@RequestMapping("/home")
+	@RequestMapping("/uhome")
 	public String loadMainPage(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 
@@ -50,7 +60,7 @@ public class MainController {
 			List<User> userList = userdao.findAll();
 			model.addAttribute("userList", userList);
 
-			return "homePage";
+			return "userHomePage";
 		} else {
 			return "redirect:/";
 		}

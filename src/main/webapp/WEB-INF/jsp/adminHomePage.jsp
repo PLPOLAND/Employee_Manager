@@ -27,9 +27,9 @@
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="#"><li>poz1</li></a>
-					<a href="#"><li>poz2</li></a>
-					<a href="/"><li>poz3</li></a>
+					<a href="#"><li>Dane użytkowników</li></a>
+					<a href="#"><li>Dodaj użytkownika</li></a>
+					<a href="/"><li>Usuń użytkownika</li></a>
 				</ol>
 			</div>
 			<div class="dane">Imie</div>

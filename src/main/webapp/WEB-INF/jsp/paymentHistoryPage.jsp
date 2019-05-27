@@ -22,34 +22,16 @@
 	
     <div class="container">
 		<div class="banner">
-			<div class="menu">
-				<ol>
-					<a href="/"><li>poz1</li></a>
-					<a href="#"><li>poz2</li></a>
-					<a href="/"><li>poz3</li></a>
-				</ol>
-			</div>
+			
 			<div class="dane">Imie</div>
 		</div>
 		
 		<div class="container login-container">
         <div class="login-form mydiv">
-            <h3>Moje konto</h3>
-            <b class="mytext">Imie:</b>
+            <h3>Moje wyplaty</h3>
+            
 			<br/>
-			Nazwisko:
-			<br/>
-			email:
-			<br/>
-			nr konta bankowego:
-			<br/>
-			wyplata NETTO:
-			<br/>
-			wyplata BRUTTO:
-			<br/>
-			stanowisko
-			<br/>
-			typ umowy:
+			NIC JESZCZE NIE ZAROBILES, LENIU
 			
             
         </div>
