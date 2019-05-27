@@ -1,0 +1,204 @@
+body {
+	 background-color: #004A99;
+}
+.container {
+	padding: 0;
+	margin: 0;
+}
+
+.login-container {
+	height: 300px;
+	width: 600px;
+/* 	
+	margin-top: calc(50% - 150px);
+	margin-left: calc(50% - 300px); */
+
+	margin: auto;
+   	position: absolute;
+   	top:0; bottom:0; /* wyrównanie w pionie */
+   	left:0; right:0; /* wyrównanie w poziomie */
+}
+
+.login-form {
+	box-shadow : 0 5px 8px 0 rgba( 0, 0, 0, 0.3), 0 9px 26px 0 rgba( 0, 0, 0, 0.19);
+	padding-top: 5%;
+	background-color: white;
+	border-radius: 1rem;
+}
+
+.login-form h3 {
+	text-align: center;
+	color: #333;
+}
+
+
+.login-container form {
+	padding: 10%;
+}
+
+.btnSubmit {
+	width: 50%;
+	border-radius: 0.5rem;
+	padding: 1.5%;
+	border: none;
+	cursor: pointer;
+}
+
+.login-form .btnSubmit {
+	font-weight: 600;
+	color: #fff;
+	background-color: #004A99;
+}
+.login-form .btnSubmit:hover{
+	background-color: #17314D;
+}
+
+.login-form .ForgetPwd {
+	color: #0062cc;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.login-field{
+	margin-bottom: 5px;
+}
+.btn-field{
+	margin-top:10px;
+}
+
+.banner{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #0062cc;
+	color: #fff;
+	height: 40px;
+}
+
+
+.menu{
+	display: block;
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	max-width: 80%;
+	background-color: #0062cc;
+	text-align: center;
+	padding: 0;
+	height: 40px;
+}
+.menu ol
+{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 18px;
+	line-height: 200%;
+	display: inline-block;
+	text-align: center;
+}
+
+.menu ol a
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.menu ol > a > li
+{
+	float: left;
+	width: 150px;
+	height: 40px;
+	border-right: 1px solid #17314D;
+	cursor: pointer;
+	color: white;
+}
+
+.menu ol > a > li:hover
+{
+	background-color: #17314D;
+}
+
+
+.dane{
+	display: block;
+	float: right;
+	background-color: #0062cc;
+	height: 40px;
+	max-width: 20%;
+	font-size: 18px;
+	line-height: 200%;
+}
+.page{
+	display: block;
+	position: absolute;
+	margin-top: 40px;
+	background-color: #ffffff59;
+	min-height: calc(100% - 40px);
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+   	top:0; bottom:0; /* wyrównanie w pionie */
+	left:0; right:0;
+	padding-top: 10px;
+}
+.user-line{
+	display: block;
+	height: 40px;
+	/* background-color: red; temp */
+	width: 100%;
+	margin: 0px;
+	/* padding-left: 10px; */
+	/* padding-right: 10px; */
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+	
+	
+
+}
+.user-line:last-child{
+	border-bottom-style: dashed;
+	border-bottom-color: #111111;
+	border-bottom-width: 0px;
+
+}
+.user-line:first-child .user-pole{
+	border-bottom-style: solid;
+	border-bottom-color: #111111;
+	border-bottom-width: 2px;
+	border-top-style: solid;
+	border-top-color: #111111;
+	border-top-width: 2px;
+	
+}
+
+.user-pole{
+	display: block;
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 0px; 
+	width: 150px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #0062cc;
+
+	border-right-style: solid;
+	border-right-color: #111111;
+	border-right-width: 1px;
+
+	border-bottom-style: solid;
+	border-bottom-color: #111111;
+	border-bottom-width: 1px;
+
+	text-align: center;
+	font-size: 15px;
+	
+}
+.user-pole:last-child{
+	width: 70px;
+}
+.user-pole input{
+	height: 40px;
+}
