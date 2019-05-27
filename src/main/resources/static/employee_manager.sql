@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Maj 2019, 11:52
+-- Czas generowania: 27 Maj 2019, 20:54
 -- Wersja serwera: 10.1.38-MariaDB
--- Wersja PHP: 7.3.4
+-- Wersja PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,17 +71,18 @@ INSERT INTO `typy_konta` (`id_t`, `nazwa`) VALUES
 CREATE TABLE `typy_umowy` (
   `id_t` int(11) NOT NULL,
   `nazwa_skr` varchar(5) NOT NULL,
-  `nazwa` varchar(35) NOT NULL
+  `nazwa` varchar(35) NOT NULL,
+  `procent_podatku` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `typy_umowy`
 --
 
-INSERT INTO `typy_umowy` (`id_t`, `nazwa_skr`, `nazwa`) VALUES
-(1, 'UoP', 'Umowa o prace'),
-(2, 'B2B', 'Własna działalność'),
-(3, 'UZ', 'Umowa zlecenia');
+INSERT INTO `typy_umowy` (`id_t`, `nazwa_skr`, `nazwa`, `procent_podatku`) VALUES
+(1, 'UoP', 'Umowa o prace', 0.15),
+(2, 'B2B', 'Własna działalność', 0.2),
+(3, 'UZ', 'Umowa zlecenia', 0.3);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE `uzytkownicy` (
   `nr_konta` varchar(16) NOT NULL,
   `wyplata_netto` double NOT NULL,
   `stanowisko` varchar(50) NOT NULL,
-  `id_tu` int(11) NOT NULL,
+  `id_t` int(11) NOT NULL,
   `id_tk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -105,9 +106,30 @@ CREATE TABLE `uzytkownicy` (
 -- Zrzut danych tabeli `uzytkownicy`
 --
 
-INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `mail`, `nr_konta`, `wyplata_netto`, `stanowisko`, `id_tu`, `id_tk`) VALUES
+INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `mail`, `nr_konta`, `wyplata_netto`, `stanowisko`, `id_t`, `id_tk`) VALUES
 (1, 'Marcin', 'Kos', 'abcd@gmail.com', '1111222233334444', 10000, 'Programista', 2, 2),
 (2, 'Marek', 'Pałdyna', 'marek@marek.pl', '5555444433331111', 9000, 'Programista', 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `wyplaty`
+--
+
+CREATE TABLE `wyplaty` (
+  `id_w` int(11) NOT NULL,
+  `id_u` int(11) NOT NULL,
+  `data_wyplaty` date NOT NULL,
+  `kwota_netto` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `wyplaty`
+--
+
+INSERT INTO `wyplaty` (`id_w`, `id_u`, `data_wyplaty`, `kwota_netto`) VALUES
+(1, 2, '2019-05-28', 5564),
+(2, 2, '2019-05-24', 341322);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -137,8 +159,15 @@ ALTER TABLE `typy_umowy`
 --
 ALTER TABLE `uzytkownicy`
   ADD PRIMARY KEY (`id_u`),
-  ADD KEY `fk_uzytkownicy_typy_umowy` (`id_tu`),
+  ADD KEY `fk_uzytkownicy_typy_umowy` (`id_t`),
   ADD KEY `fk_uzytkownicy_typy_konta1` (`id_tk`);
+
+--
+-- Indeksy dla tabeli `wyplaty`
+--
+ALTER TABLE `wyplaty`
+  ADD PRIMARY KEY (`id_w`),
+  ADD KEY `fk_wyplaty_uzytkownicy1` (`id_u`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -169,6 +198,12 @@ ALTER TABLE `uzytkownicy`
   MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT dla tabeli `wyplaty`
+--
+ALTER TABLE `wyplaty`
+  MODIFY `id_w` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Ograniczenia dla zrzutów tabel
 --
 
@@ -183,7 +218,13 @@ ALTER TABLE `loginy`
 --
 ALTER TABLE `uzytkownicy`
   ADD CONSTRAINT `fk_uzytkownicy_typy_konta1` FOREIGN KEY (`id_tk`) REFERENCES `typy_konta` (`id_t`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_uzytkownicy_typy_umowy` FOREIGN KEY (`id_tu`) REFERENCES `typy_umowy` (`id_t`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_uzytkownicy_typy_umowy` FOREIGN KEY (`id_t`) REFERENCES `typy_umowy` (`id_t`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ograniczenia dla tabeli `wyplaty`
+--
+ALTER TABLE `wyplaty`
+  ADD CONSTRAINT `fk_wyplaty_uzytkownicy1` FOREIGN KEY (`id_u`) REFERENCES `uzytkownicy` (`id_u`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
