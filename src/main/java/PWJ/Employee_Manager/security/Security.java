@@ -55,10 +55,8 @@ public class Security{
         //TODO: hashThePass
 
         
-        // database.find_to_login("loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"");
         String warunek = "loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"";
         List<User> resultUsers = database.find_to_login(warunek);
-        // List<User> resultUsers = database.find_user_by_id(1);
         
         if (resultUsers.isEmpty()) {
             return false;
@@ -68,10 +66,12 @@ public class Security{
             String user = resultUsers.get(0).getName();
             String srUser = resultUsers.get(0).getSurname();
             Integer idUser = resultUsers.get(0).getId();
+            String typUser = resultUsers.get(0).getAccount_type();
             HttpSession session = request.getSession();
             session.setAttribute("name", user); //dodawanie pola do sesji
             session.setAttribute("surName", srUser);
             session.setAttribute("id", idUser);
+            session.setAttribute("typKonta", typUser);
             session.setMaxInactiveInterval(60 * 60); //usuniecie pol sesji po 60 minutach
             
             return true;
@@ -138,6 +138,36 @@ public class Security{
             return null;
         }
     }
+
+    /**
+     * Funkcja zwracająca typ użytkownika z danych sesji
+     * @version 1.0
+     * @return Typ Użytkownika
+     */
+    public String getUserType(){
+        if (isLoged()){
+            HttpSession session = request.getSession();
+            return session.getAttribute("typKonta").toString();
+        }
+        else{
+            return null;
+        }
+    }
+
+    public boolean isUserAdmin(){
+        if(isLoged()){
+            HttpSession session = request.getSession();
+            if ("Administrator".equals(session.getAttribute("typKonta").toString())) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
     /**
      * Funkcja pobierająca dane użytkonika z bazy danych na podstawie ID (pobranego z danych sesji)
      * @version 1.0
