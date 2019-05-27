@@ -79,10 +79,16 @@ public class MainController {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
-			List<User> userList = userdao.findAll();
-			model.addAttribute("userList", userList);
+			if(!sec.isUserAdmin()){//jeśli użytkonik nie jest adminem to przekieruj go gdzieś
+				
+				return "redirect:/myaccount";
+			}
+			else{
+				List<User> userList = userdao.findAll();
+				model.addAttribute("userList", userList);
 
-			return "userHomePage";
+				return "userHomePage";
+			}
 		} else {
 			return "redirect:/";
 		}
