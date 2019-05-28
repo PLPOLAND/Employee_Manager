@@ -63,6 +63,9 @@ public class MainController {
 		Security security = new Security(request, userdao);
 
 		if (security.login()) {
+			if(security.isUserAdmin()){
+				return "redirect:/ahome";
+			}
 			return "redirect:/uhome";
 		} else {
 			return "redirect:/bad_login";
@@ -71,7 +74,7 @@ public class MainController {
 
 	@RequestMapping("/bad_login")
 	public String bad_login() {
-		return "loginPage";
+		return "badLoginPage";
 	}
 
 	@RequestMapping("/uhome")
@@ -79,19 +82,32 @@ public class MainController {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
-			if(!sec.isUserAdmin()){//jeśli użytkonik nie jest adminem to przekieruj go gdzieś
-				
-				return "redirect:/myaccount";
-			}
-			else{
-				List<User> userList = userdao.findAll();
-				model.addAttribute("userList", userList);
+			List<User> userList = userdao.findAll();
+			model.addAttribute("userList", userList);
 
-				return "userHomePage";
-			}
+			return "userHomePage";
 		} else {
 			return "redirect:/";
 		}
 
+	}
+
+	@RequestMapping("/ahome")
+	public String loadAdminPage(Model model, HttpServletRequest request){
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {// jeśli użytkonik nie jest adminem to przekieruj go gdzieś
+
+				return "redirect:/uhome";
+			} else {
+				List<User> userList = userdao.findAll();
+				model.addAttribute("userList", userList);
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
+				return "adminHomePage";
+			}
+		} else {
+			return "redirect:/";
+		}
 	}
 }
