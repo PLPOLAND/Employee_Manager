@@ -1,9 +1,27 @@
 body {
-	 background-color: #004A99;
+	 background-color: #83BDE9;
 }
 .container {
 	padding: 0;
 	margin: 0;
+}
+
+.userslist-container {
+	background-color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	height:500px;
+	width: 1000px;
+}
+
+.myaccount-container{
+	background-color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	height:300px;
+	width: 400px;
 }
 
 .login-container {
@@ -30,6 +48,7 @@ body {
 	text-align: center;
 	color: #333;
 }
+
 
 .login-container form {
 	padding: 10%;

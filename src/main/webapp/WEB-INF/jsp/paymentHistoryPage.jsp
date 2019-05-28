@@ -25,15 +25,27 @@
 
 <body>
 
-	<div class="container">
-		<div class="banner">
-			<c:forEach var="userval" items="${user}">
-				<div class="dane">${userval.getName()}${userval.getSurname()}</div>
-			</c:forEach>
-		</div>
+		<header>
+			<nav class="navbar navbar-dark navbar-expand-md" style='background-color: #61A4D7;'>
+				<a class="navbar-brand" href="/uhome"><img src="/logoinwebapp/logo2.png" width="30" height="30"
+				class="d-inline-block mr-1 align-bottom" alt="">
+				<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></a>
+	
+				<div>
+					<ul class="navbar-nav" >
+						<li><a class="nav-link" href="/uhome"> Strona główna </a></li>
+						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
+						<li><a class="nav-link" href="paymenthistory"> Historia wypłat </a></li>
+						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
+					</ul>
+					<!--   <div class="dane">${userval.getName()} ${userval.getSurname()}</div>  --> 
+				</div>
+			</nav>
+		</header>
+	
 
-		<div class="container login-container">
-			<div class="login-form mydiv">
+		
+			<div class="myaccount-container">
 				<h3>Moje wyplaty</h3>
 				<br />
 				<c:set var="count" value="1" scope="page" />
@@ -55,8 +67,8 @@
 					</c:forEach>
 				</table>
 			</div>
-		</div>
-	</div>
+		
+	
 </body>
 
 </html>

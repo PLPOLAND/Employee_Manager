@@ -18,7 +18,7 @@
 
 <body>
 
-    <div class="container login-container">
+    <div class="login-container">
         <div class="login-form">
             <h3>Logowanie do systemu</h3>
             <form action="login" method="POST">

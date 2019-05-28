@@ -24,6 +24,9 @@
 <body>
 
 	<div class="container">
+	
+	
+	
 		<div class="banner">
 			<div class="menu">
 				<ol>
@@ -34,6 +37,9 @@
 			</div>
 			<div class="dane">Imie</div>
 		</div>
+		
+		
+		
 		<div class="page">
 			<div class="user-line">
 				<div class="user-pole">Imie</div>

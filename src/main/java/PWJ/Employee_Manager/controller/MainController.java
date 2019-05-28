@@ -79,7 +79,7 @@ public class MainController {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
-			if(!sec.isUserAdmin()){//jeśli użytkonik nie jest adminem to przekieruj go gdzieś
+			if(!sec.isUserAdmin()){//jeśli użytkownik nie jest adminem to przekieruj go gdzieś
 				
 				return "redirect:/myaccount";
 			}
@@ -93,5 +93,15 @@ public class MainController {
 			return "redirect:/";
 		}
 
+	}
+	
+	@RequestMapping("/contact")
+	public String loadContactPage() {
+		return "contactPage";
+	}
+	
+	@RequestMapping("/testtest")
+	public String loadTestPage() {
+		return "testtest";
 	}
 }
