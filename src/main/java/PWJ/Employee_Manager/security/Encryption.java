@@ -3,6 +3,11 @@ package PWJ.Employee_Manager.security;
 public class Encryption
 {
 	/*Przesunięcie litery według tabeli ASCII, wynik zawsze w przedziale 33-122(od spacji do 'z')*/
+	/**
+	 * @param character - znak do podmiany
+	 * @param offset - o ile przesunąć znak według tablicy ASCII
+	 * @return changed_character - podmieniony znak po przesunięciu
+	 */
 	private char changeChar(char character, int offset)
 	{
 		character+= offset;
@@ -15,6 +20,10 @@ public class Encryption
 	}
 	
 	/*Algorytm szyfrujący hasło*/
+	/**
+	 * @param password - hasło do zaszyfrowania
+	 * @return encrypted_paswword - zaszyfrowane hasło
+	 */
 	public String encryptPassword(String password)
 	{
 		String encrypted = new String("");
