@@ -29,16 +29,15 @@ public class MainController {
 		return "loginPage";
 	}
 
-
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
 		Security security = new Security(request, userdao);
 
 		if (security.login()) {
-			if(security.isUserAdmin()){
+			if (security.isUserAdmin()) {
 				return "redirect:/ahome";
 			}
-			return "redirect:/uhome";
+			return "userHomePage";
 		} else {
 			return "redirect:/bad_login";
 		}
@@ -54,19 +53,15 @@ public class MainController {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
-			if(!sec.isUserAdmin()){//jeśli użytkownik nie jest adminem to przekieruj go gdzieś
-				
-				return "redirect:/uhome";
-			}
-			else{
+			if (!sec.isUserAdmin()) {// jeśli użytkownik nie jest adminem to przekieruj go gdzieś
+
 				List<User> userList = userdao.findAll();
 				model.addAttribute("userList", userList);
+				return "userHomePage";
+			} else {
+				return "redirect:/ahome";
 			}
-			List<User> userList = userdao.findAll();
-			model.addAttribute("userList", userList);
-			
 
-			return "userHomePage";
 		} else {
 			return "redirect:/";
 		}
@@ -101,15 +96,14 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping("/contact")
 	public String loadContactPage() {
 		return "contactPage";
 	}
-	
 
 	@RequestMapping("/ahome")
-	public String loadAdminPage(Model model, HttpServletRequest request){
+	public String loadAdminPage(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
@@ -127,35 +121,28 @@ public class MainController {
 		}
 
 	}
-	
+
 	@RequestMapping("/users")
 	public String loadUsersAccountsPage() {
 		return "usersAccountsPage";
 	}
-	
+
 	@RequestMapping("/adduser")
 	public String loadAddUserPage() {
 		return "addUserPage";
 	}
-	
-	@RequestMapping("/deleteuser")
-	public String loadDeleteUserPage() {
-		return "deleteUserPage";
-	}
-	
+
 	@RequestMapping(value = "/delete")
 	public String test(@RequestParam("id") int id, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
-		if(sec.isLoged()) {
-			if(!sec.isUserAdmin()) {
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
-			}
-			else {
+			} else {
 				userdao.deleteUser(id);
 				return "redirect:/ahome";
 			}
-		}
-		else {
+		} else {
 			return "redirect:/";
 		}
 	}
