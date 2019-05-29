@@ -19,6 +19,19 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
+
+<script type="text/javascript">
+  function confirmation(userID)
+  {
+	  var retVal = confirm("Czy chcesz usunac tego uzytkownika?");
+      if( retVal == true ) {
+    	  window.location.href='/delete?id='+userID;
+      } else {
+    	  window.location.href='/ahome';
+      }
+  }
+</script>
+
 </head>
 
 <body>
@@ -29,7 +42,6 @@
 				<ol>
 					<a href="#"><li>Dane użytkowników</li></a>
 					<a href="#"><li>Dodaj użytkownika</li></a>
-					<a href="/"><li>Usuń użytkownika</li></a>
 				</ol>
 			</div>
 			<div class="dane">${userName}</div>
@@ -45,25 +57,27 @@
 					<td>Wypłata BRUTTO</td>
 					<td>Stanowisko</td>
 					<td>Typ Umowy</td>
-					<td></td>
+					<td>Edytuj</td>
+					<td>Usuń</td>
 				</tr>
 				<c:forEach var="userval" items="${userList}">
 					<tr>
-						<td> ${userval.getName()}</td>
-						<td> ${userval.getSurname()}</td>
-						<td> ${userval.getEmail()}</td>
-						<td> ${userval.getAccount_number()}</td>
-						<td> ${userval.getNet_salary()}</td>
-						<td> ${userval.getGross_salary()}</td>
-						<td> ${userval.getPosition()}</td>
-						<td> ${userval.getContract_type()}</td>
+						<td>${userval.getName()}</td>
+						<td>${userval.getSurname()}</td>
+						<td>${userval.getEmail()}</td>
+						<td>${userval.getAccount_number()}</td>
+						<td>${userval.getNet_salary()} zł</td>
+						<td>${userval.getGross_salary()} zł</td>
+						<td>${userval.getPosition()}</td>
+						<td>${userval.getContract_type()}</td>
+						<td><input type="submit" class="" value="Edytuj" /></td>
 						<td>
-							<input type="submit" class="" value="Zmien" />
+							<input type="button" class="" value="Usuń" onclick="confirmation(<c:out value='${userval.getId()}' />);" />
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-				<!-- <div class="user-line">
+			<!-- <div class="user-line">
 					<div class="user-pole">Imie</div>
 					<div class="user-pole">Nazwisko</div>
 					<div class="user-pole">email</div>
@@ -75,7 +89,7 @@
 					<div class="user-pole"></div>
 				</div> -->
 
-				<!-- <c:forEach var="userval" items="${userList}">
+			<!-- <c:forEach var="userval" items="${userList}">
 					<div class="user-line">
 						<div class="user-pole"> ${userval.getName()}</div>
 						<div class="user-pole"> ${userval.getSurname()}</div>

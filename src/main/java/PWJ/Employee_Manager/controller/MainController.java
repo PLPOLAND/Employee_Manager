@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import PWJ.Employee_Manager.dao.SalaryDAO;
 import PWJ.Employee_Manager.dao.UsersDAO;
@@ -107,6 +108,23 @@ public class MainController {
 				return "adminHomePage";
 			}
 		} else {
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String test(@RequestParam("id") int id, HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+		if(sec.isLoged()) {
+			if(!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			}
+			else {
+				userdao.deleteUser(id);
+				return "redirect:/ahome";
+			}
+		}
+		else {
 			return "redirect:/";
 		}
 	}
