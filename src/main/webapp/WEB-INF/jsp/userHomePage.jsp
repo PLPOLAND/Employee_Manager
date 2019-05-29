@@ -10,15 +10,17 @@
 <html lang="pl">
 
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<c:url value="/css/main.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css">
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<c:url value="/css/main.css" var="jstlCss" />
+	<link href="${jstlCss}" rel="stylesheet" />
+	<c:url value="/css/mystyle.css" var="jstlCss2" />
+	<link href="${jstlCss2}" rel="stylesheet" />
 </head>
 
 <body>
@@ -32,45 +34,17 @@
 					<ul class="navbar-nav" >
 						<li><a class="nav-link" href="/uhome"> Strona główna </a></li>
 						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
-						<li><a class="nav-link" href="paymenthistory"> Historia wypłat </a></li>
+						<li><a class="nav-link" href="/paymenthistory"> Historia wypłat </a></li>
 						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
 					</ul>
 				</div>
 			</nav>
 		</header>
 	
-		<div class="userslist-container">
-			<table class="table table-bordered">
-				<thead>
-			    	<tr>
-			      		<th scope="col">Imię</th>	
-			     		<th scope="col">Nazwisko</th>
-			     		<th scope="col">Email</th>
-			      		<th scope="col">Nr konta bankowego</th>
-			      		<th scope="col">Wypłata NETTO</th>
-			     		<th scope="col">Wypłata BRUTTO</th>
-			      		<th scope="col">Stanowisko</th>
-			      		<th scope="col">Typ umowy</th>
-			      		<th scope="col">Edycja</th>
-			    	</tr>
-			  	</thead>
-		  		<tbody>
-		  			<c:forEach var="userval" items="${userList}">
-					    <tr>
-					      <td> ${userval.getName()} </td>
-					      <td> ${userval.getSurname()} </td>
-					      <td> ${userval.getEmail()} </td>
-					      <td> ${userval.getAccount_number()} </td>
-					      <td> ${userval.getNet_salary()} </td>
-					      <td> ${userval.getGross_salary()} </td>
-					      <td> ${userval.getPosition()} </td>
-					      <td> ${userval.getContract_type()} </td>
-					      <td valign="button" align="right"><button type="button" class="btn btn-light">Zmień</button> </td>
-					    </tr>
-				    </c:forEach>
-				</tbody>
-			</table>
+		<div class="home-style">
+		WITAJ!
 		</div>
+    
 </body>
 
 </html>

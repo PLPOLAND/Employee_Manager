@@ -28,6 +28,50 @@ public class MainController {
 		return "loginPage";
 	}
 
+
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request) {
+		Security security = new Security(request, userdao);
+
+		if (security.login()) {
+			if(security.isUserAdmin()){
+				return "redirect:/ahome";
+			}
+			return "redirect:/uhome";
+		} else {
+			return "redirect:/bad_login";
+		}
+	}
+
+	@RequestMapping("/bad_login")
+	public String bad_login() {
+		return "badLoginPage";
+	}
+
+	@RequestMapping("/uhome")
+	public String loadMainPage(Model model, HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			if(!sec.isUserAdmin()){//jeśli użytkownik nie jest adminem to przekieruj go gdzieś
+				
+				return "redirect:/uhome";
+			}
+			else{
+				List<User> userList = userdao.findAll();
+				model.addAttribute("userList", userList);
+			}
+			List<User> userList = userdao.findAll();
+			model.addAttribute("userList", userList);
+			
+
+			return "userHomePage";
+		} else {
+			return "redirect:/";
+		}
+
+	}
+
 	@RequestMapping("/paymenthistory")
 	public String loadPaymentHistoryPage(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
@@ -55,44 +99,6 @@ public class MainController {
 		} else {
 			return "redirect:/";
 		}
-
-	}
-
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request) {
-		Security security = new Security(request, userdao);
-
-		if (security.login()) {
-			return "redirect:/uhome";
-		} else {
-			return "redirect:/bad_login";
-		}
-	}
-
-	@RequestMapping("/bad_login")
-	public String bad_login() {
-		return "loginPage";
-	}
-
-	@RequestMapping("/uhome")
-	public String loadMainPage(Model model, HttpServletRequest request) {
-		Security sec = new Security(request, userdao);
-
-		if (sec.isLoged()) {
-			if(!sec.isUserAdmin()){//jeśli użytkownik nie jest adminem to przekieruj go gdzieś
-				
-				return "redirect:/myaccount";
-			}
-			else{
-				List<User> userList = userdao.findAll();
-				model.addAttribute("userList", userList);
-
-				return "userHomePage";
-			}
-		} else {
-			return "redirect:/";
-		}
-
 	}
 	
 	@RequestMapping("/contact")
@@ -100,8 +106,39 @@ public class MainController {
 		return "contactPage";
 	}
 	
-	@RequestMapping("/testtest")
-	public String loadTestPage() {
-		return "testtest";
+
+	@RequestMapping("/ahome")
+	public String loadAdminPage(Model model, HttpServletRequest request){
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {// jeśli użytkonik nie jest adminem to przekieruj go gdzieś
+
+				return "redirect:/uhome";
+			} else {
+				List<User> userList = userdao.findAll();
+				model.addAttribute("userList", userList);
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
+				return "adminHomePage";
+			}
+		} else {
+			return "redirect:/";
+		}
+
+	}
+	
+	@RequestMapping("/users")
+	public String loadUsersAccountsPage() {
+		return "usersAccountsPage";
+	}
+	
+	@RequestMapping("/adduser")
+	public String loadAddUserPage() {
+		return "addUserPage";
+	}
+	
+	@RequestMapping("/deleteuser")
+	public String loadDeleteUserPage() {
+		return "deleteUserPage";
 	}
 }
