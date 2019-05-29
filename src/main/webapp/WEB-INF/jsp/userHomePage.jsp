@@ -43,6 +43,7 @@
 	
 		<div class="home-style">
 		WITAJ!
+		<!--  commit dla ady  -->
 		</div>
     
 </body>
