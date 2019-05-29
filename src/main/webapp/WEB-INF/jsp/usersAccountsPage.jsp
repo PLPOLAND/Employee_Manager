@@ -21,18 +21,6 @@
 	<link href="${jstlCss}" rel="stylesheet" />
 	<c:url value="/css/mystyle.css" var="jstlCss2" />
 	<link href="${jstlCss2}" rel="stylesheet" />
-	
-	<script type="text/javascript">
-  function confirmation(userID)
-  {
-	  var retVal = confirm("Czy chcesz usunac tego uzytkownika?");
-      if( retVal == true ) {
-    	  window.location.href='/delete?id='+userID;
-      } else {
-    	  window.location.href='/ahome';
-      }
-  }
-</script>
 </head>
 
 <body>
@@ -66,7 +54,6 @@
 			      		<th scope="col">Stanowisko</th>
 			      		<th scope="col">Typ umowy</th>
 			      		<th scope="col">Edycja</th>
-			      		<th scope="col">Usuń</th>
 			    	</tr>
 			  	</thead>
 		  		<tbody>
@@ -80,8 +67,7 @@
 					      <td> ${userval.getGross_salary()} </td>
 					      <td> ${userval.getPosition()} </td>
 					      <td> ${userval.getContract_type()} </td>
-					      <td valign="button" align="right"><button type="button" class="btn btn-light">Edytuj</button> </td>
-					      <td valign="button" align="right"><button type="button" class="btn btn-light" onclick="confirmation(<c:out value='${userval.getId()}' />);">Usuń</button> </td>
+					      <td valign="button" align="right"><button type="button" class="btn btn-light">Zmień</button> </td>
 					    </tr>
 				    </c:forEach>
 				</tbody>

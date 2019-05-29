@@ -1,3 +1,98 @@
+
+body {
+	 background-color: #83BDE9;
+}
+.container {
+	padding: 0;
+	margin: 0;
+}
+
+.home-style{ 
+    width: 40%;
+    background: #323a3d;
+    text-align: center;
+    height: 140px;
+    font-size: 24px;
+    line-height: 140px;
+}
+
+.userslist-container {
+	background-color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	height:500px;
+	width: 1000px;
+}
+
+.myaccount-container{
+	background-color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	height:300px;
+	width: 400px;
+}
+
+.login-container {
+	height: 300px;
+	width: 600px;
+/* 	
+	margin-top: calc(50% - 150px);
+	margin-left: calc(50% - 300px); */
+
+	margin: auto;
+   	position: absolute;
+   	top:0; bottom:0; /* wyrównanie w pionie */
+   	left:0; right:0; /* wyrównanie w poziomie */
+}
+
+.login-form {
+	box-shadow : 0 5px 8px 0 rgba( 0, 0, 0, 0.3), 0 9px 26px 0 rgba( 0, 0, 0, 0.19);
+	padding-top: 5%;
+	background-color: white;
+	border-radius: 1rem;
+}
+
+.login-form h3 {
+	text-align: center;
+	color: #333;
+}
+
+
+.login-container form {
+	padding: 10%;
+}
+
+.btnSubmit {
+	width: 50%;
+	border-radius: 0.5rem;
+	padding: 1.5%;
+	border: none;
+	cursor: pointer;
+}
+
+.login-form .btnSubmit {
+	font-weight: 600;
+	color: #fff;
+	background-color: #004A99;
+}
+.login-form .btnSubmit:hover{
+	background-color: #17314D;
+}
+
+.login-form .ForgetPwd {
+	color: #0062cc;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.login-field{
+	margin-bottom: 5px;
+}
+.btn-field{
+	margin-top:10px;
+
 body{
 	background-color: #00254D;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

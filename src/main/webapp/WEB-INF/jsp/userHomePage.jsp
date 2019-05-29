@@ -10,61 +10,41 @@
 <html lang="pl">
 
 <head>
-<!-- <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<c:url value="/css/main.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css">
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<c:url value="/css/main.css" var="jstlCss" />
+	<link href="${jstlCss}" rel="stylesheet" />
+	<c:url value="/css/mystyle.css" var="jstlCss2" />
+	<link href="${jstlCss2}" rel="stylesheet" />
 </head>
 
 <body>
-
-	<div class="container">
-		<div class="banner">
-			<div class="menu">
-				<ol>
-					<a href="/myaccount"><li>Moje konto</li></a>
-					<a href="/paymenthistory"><li>Historia wyplat</li></a>
-				</ol>
-			</div>
-			<div class="dane">Imie</div>
-		</div>
-		<div class="page">
-			<div class="user-line">
-				<div class="user-pole">Imie</div>
-				<div class="user-pole">Nazwisko</div>
-				<div class="user-pole">email</div>
-				<div class="user-pole">nr konta bankowego</div>
-				<div class="user-pole">wyplata NETTO</div>
-				<div class="user-pole">wyplata BRUTTO</div>
-				<div class="user-pole">stanowisko</div>
-				<div class="user-pole">typ umowy</div>
-				<div class="user-pole"></div>
-			</div>
-
-			<c:forEach var="userval" items="${userList}">
-				<div class="user-line">
-					<div class="user-pole"> ${userval.getName()}</div>
-					<div class="user-pole"> ${userval.getSurname()}</div>
-					<div class="user-pole"> ${userval.getEmail()}</div>
-					<div class="user-pole"> ${userval.getAccount_number()}</div>
-					<div class="user-pole"> ${userval.getNet_salary()}</div>
-					<div class="user-pole"> ${userval.getGross_salary()}</div>
-					<div class="user-pole"> ${userval.getPosition()}</div>
-					<div class="user-pole"> ${userval.getContract_type()}</div>
-					<div class="user-pole">
-						<input type="submit" class="" value="Zmien" />
-					</div>
+		<header>
+			<nav class="navbar navbar-dark navbar-expand-md" style='background-color: #61A4D7;'>
+				<a class="navbar-brand" href="/uhome"><img src="/logoinwebapp/logo2.png" width="30" height="30"
+				class="d-inline-block mr-1 align-bottom" alt="">
+				<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></a>
+	
+				<div>
+					<ul class="navbar-nav" >
+						<li><a class="nav-link" href="/uhome"> Strona główna </a></li>
+						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
+						<li><a class="nav-link" href="/paymenthistory"> Historia wypłat </a></li>
+						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
+					</ul>
 				</div>
-			</c:forEach>
-
+			</nav>
+		</header>
+	
+		<div class="home-style">
+		WITAJ!
 		</div>
-	</div>
-
+    
 </body>
 
 </html>
