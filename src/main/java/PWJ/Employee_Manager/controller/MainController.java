@@ -157,20 +157,22 @@ public class MainController {
 				List<User> user = userdao.find_user_by_id(id);
 				model.addAttribute("user", user);
 				return "editUserPage";
+				
 			}
 		} else {
 			return "redirect:/";
 		}
 	}
 	
-	@RequestMapping(value = "/editUser")
-	public String editUser(@RequestParam("id") int id, HttpServletRequest request,Model model) {
+	@RequestMapping("/editUser")
+	public String editUser(HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
-			
+				String name = request.getParameter("surname").toString();
+				System.out.println("NOWE IMIE" + name);
 				return "redirect:/ahome";
 			}
 		} else {
