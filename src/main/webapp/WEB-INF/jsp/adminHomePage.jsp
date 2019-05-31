@@ -41,7 +41,7 @@
 			<div class="menu">
 				<ol>
 					<a href="#"><li>Dane użytkowników</li></a>
-					<a href="#"><li>Dodaj użytkownika</li></a>
+					<a href="/adduser"><li>Dodaj użytkownika</li></a>
 				</ol>
 			</div>
 			<div class="dane">${userName}</div>

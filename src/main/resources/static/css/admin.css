@@ -69,7 +69,11 @@ body{
 	max-width: 20%;
 	font-size: 18px;
 	line-height: 200%;
-	margin-right: 5px;
+	padding: 0px 5px 0px 5px;
+	cursor: default;
+}
+.dane:hover{
+	background-color: #004896;
 	cursor: default;
 }
 .page{
@@ -86,71 +90,6 @@ body{
 
 	padding: 10px 50px 10px 50px;
 }
-/* .users-table{
-	display: block;
-	width: 90%;
-	margin-left: 5%;
-}
-.user-line{
-	display: block;
-	height: 40px;
-	width: 100%;
-	margin: 0px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	
-
-}
-.user-line:last-child{
-	border-bottom-style: dashed;
-	border-bottom-color: #111111;
-	border-bottom-width: 0px;
-
-}
-.user-line:first-child .user-pole{
-	border-bottom-style: solid;
-	border-bottom-color: #111111;
-	border-bottom-width: 2px;
-	border-top-style: solid;
-	border-top-color: #111111;
-	border-top-width: 2px;
-	
-}
-
-.user-pole{
-	display: block;
-	float: left;
-	margin-top: 0px;
-	margin-bottom: 0px; 
-	width: 150px;
-	height: 40px;
-	line-height: 40px;
-	background-color: #4088D5;
-
-	border-right-style: solid;
-	border-right-color: #111111;
-	border-right-width: 1px;
-
-	border-bottom-style: solid;
-	border-bottom-color: #111111;
-	border-bottom-width: 1px;
-
-	text-align: center;
-	font-size: 15px;
-	
-}
-.user-pole:last-child{
-	width: 70px;
-	border-right-width: 2px;
-}
-.user-pole:first-child{
-	border-left-style: solid;
-	border-left-color: #111111;
-	border-left-width: 2px;
-}
-.user-pole input{
-	height: 40px;
-} */
 
 .page > table{
 	background-color: #0062cc;
@@ -204,4 +143,8 @@ body{
 	height: 100%;
 	width: 100%;
 	
+}
+.pole_przycisku {
+	padding: 0px;
+	margin: 0px;
 }
