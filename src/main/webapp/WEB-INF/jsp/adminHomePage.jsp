@@ -70,7 +70,7 @@
 						<td>${userval.getGross_salary()} zł</td>
 						<td>${userval.getPosition()}</td>
 						<td>${userval.getContract_type()}</td>
-						<td><input type="submit" class="" value="Edytuj" /></td>
+						<td><input type="button" class="" value="Edytuj" onclick="location.href='/edit?id=${userval.getId()}'" /></td>
 						<td>
 							<input type="button" class="" value="Usuń" onclick="confirmation(<c:out value='${userval.getId()}' />);" />
 						</td>
