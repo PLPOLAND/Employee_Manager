@@ -140,11 +140,26 @@ body{
 
 } */
 .page > table td input{
-	height: 100%;
-	width: 100%;
-	
+	height: 40px;
+	width: calc(100% - 1px);
+	background-color: inherit;
+	color: inherit;
+	line-height: 40px;
+	margin:0px;
+	border: 0px;
+
+}
+.page > table td select{
+	height: 40px;
+	width: calc(100% - 1px);
+	background-color: inherit;
+	color: inherit;
+	line-height: 40px;
+	margin:0px;
+	border: 0px;
 }
 .pole_przycisku {
-	padding: 0px;
+	
+	padding: 1px !important;
 	margin: 0px;
 }

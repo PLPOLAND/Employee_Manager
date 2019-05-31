@@ -50,7 +50,7 @@
             <div class="dane">${userName}</div>
         </div>
         <div class="page">
-            <table>
+            <!-- <table>
                 <tr>
                     <td>Login</td>
                     <td>Hasło</td>
@@ -65,6 +65,10 @@
                 </tr>
                 <tr>
                     <form action="/addU" method="post">
+
+
+                        
+
                         <td class="pole_przycisku"><input type="text" placeholder="Login" name="login" maxlength="30"></td>
                         <td class="pole_przycisku"><input type="password" placeholder="Hasło" name = "pass" maxlength="30"></td>
                         <td class="pole_przycisku"><input type="text" placeholder="Imie" name = "imie" maxlength="45"></td>
@@ -87,6 +91,69 @@
                         </td>
                     </form>
                 </tr>
+            </table> -->
+            <table>
+                <form method="POST" action="/addU">
+                    <tr>
+                        <td>Dane</td>
+                        <td>Edycja</td>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td class="pole_przycisku"><input type="text" name="login" maxlength="30" ></td>
+                    </tr>
+                    <tr>
+                        <td> Hasło: </td>
+                        <td class="pole_przycisku"><input type="password" name="password" maxlength="30"></td>
+                    </tr>
+                    <tr>
+                        <td> Imie:</td>
+                        <td  class="pole_przycisku"><input type="text" name="name" maxlength="45"></td>
+                    </tr>
+                    <tr>
+                        <td> Nazwisko:</td>
+                        <td  class="pole_przycisku"><input type="text" name="surname" maxlength="45"></td>
+                    </tr>
+                    <tr>
+                        <td> E-mail:</td>
+                        <td  class="pole_przycisku"><input type="email" name="mail" maxlength="45"></td>
+                    </tr>
+                    <tr>
+                        <td> Nr konta:</td>
+                        <td  class="pole_przycisku"><input type="number" name="account" max="99999999999"></td>
+                    </tr>
+                    <tr>
+                        <td> Wypłata NETTO:</td>
+                        <td class="pole_przycisku"><input type="number" name="account" max="99999999999"></td>
+                    </tr>
+                    <tr>
+                        <td>Stanowisko: </td>
+                        <td class="pole_przycisku"><input type="text" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Typ Umowy</td>
+                        <td class="pole_przycisku">
+                            <select name="typ_umowy">
+                                <option>B2B</option>
+                                <option>UZ</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Typ Konta</td>
+                        <td class="pole_przycisku">
+                            <select name="typ_konta">
+                                <option>Administrator</option>
+                                <option>Użytkownik</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Dodaj użytkownika:</td>
+                        <td class="pole_przycisku"><input type="submit" name="send" value="Wyślij"></td>
+                    </tr>
+                </form>
             </table>
         </div>
     </div>
