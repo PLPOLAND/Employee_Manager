@@ -78,11 +78,11 @@
                     </tr>
                     <tr>
                         <td> Nr konta:</td>
-                        <td  class="pole_przycisku"><input type="number" name="account" max="99999999999"></td>
+                        <td  class="pole_przycisku"><input type="number" name="account" max="9999999999999999999999999"></td>
                     </tr>
                     <tr>
                         <td> Wypłata NETTO:</td>
-                        <td class="pole_przycisku"><input type="number" name="account" max="99999999999"></td>
+                        <td class="pole_przycisku"><input type="text" name="account" ></td>
                     </tr>
                     <tr>
                         <td>Stanowisko: </td>
