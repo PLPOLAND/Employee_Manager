@@ -52,7 +52,9 @@ public class Security{
             return false; 
         }
         
-        //TODO: hashThePass
+        // Encryption hashownik = new Encryption();
+
+        // pass = hashownik.encryptPassword(pass);
 
         
         String warunek = "loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"";
@@ -186,6 +188,21 @@ public class Security{
         else{
             return null;
         }
+    }
+    /**
+     * Funkcja usuwa dane sesji = wylogowanie użytkownika
+     */
+    public void logout(){
+        if(isLoged()){
+            HttpSession session = request.getSession();
+            
+            session.removeAttribute("name"); // usuwanie pola do sesji
+            session.removeAttribute("surName");
+            session.removeAttribute("id");
+            session.removeAttribute("typKonta");
+        }
+        else
+            return;
     }
 
 }
