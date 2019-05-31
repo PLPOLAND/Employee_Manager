@@ -1,8 +1,11 @@
 package PWJ.Employee_Manager.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -175,14 +178,32 @@ public class MainController {
 	}
 	
 	@RequestMapping("/editUser")
-	public String editUser(HttpServletRequest request) {
+	public String editUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Security sec = new Security(request, userdao);
+		PrintWriter out = response.getWriter();
+
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
-				String name = request.getParameter("surname").toString();
-				System.out.println("NOWE IMIE" + name);
+				int id = Integer.parseInt(request.getParameter("id"));
+				String name = request.getParameter("name");
+				String surname = request.getParameter("surname");
+				String email = request.getParameter("email");
+				String account = request.getParameter("account");
+				String old_pass = request.getParameter("oldpassword");
+				String new_pass = request.getParameter("newpassword");
+				
+				if(old_pass.equals("")) { // gdy nie zmieniamy hasła
+					userdao.editUser_1(id,name,surname,email,account);
+				}
+				else if(!old_pass.equals("") || !new_pass.equals("")) {
+					userdao.editUser_2(id,name,surname,email,account,new_pass);
+					
+					
+					// TODO: sprawdzanie czy stare haslo jest poprawne
+					// i wswietlenie komunikatu jesli okaze sie nieprawidlowe
+				}
 				return "redirect:/ahome";
 			}
 		} else {

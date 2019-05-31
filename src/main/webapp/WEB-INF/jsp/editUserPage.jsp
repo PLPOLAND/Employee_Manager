@@ -22,16 +22,17 @@
 
 <script type="text/javascript">
 	function confirmation(userID) {
-		var retVal = confirm("Czy chcesz usunac tego uzytkownika?");
+		var retVal = confirm("Czy chcesz edytowac tego uzytkownika?");
 		if (retVal == true) {
-			window.location.href = '/delete?id=' + userID;
+			return true;
 		} else {
-			window.location.href = '/ahome';
+			return false;
 		}
 	}
 </script>
-
 </head>
+
+
 
 <body>
 
@@ -39,56 +40,59 @@
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="#"><li>Dane użytkowników</li></a>
-					<a href="#"><li>Dodaj użytkownika</li></a>
+					<a href="/ahome"><li>Dane użytkowników</li></a>
+					<a href="/adduser"><li>Dodaj użytkownika</li></a>
 				</ol>
 			</div>
 			<div class="dane">${userName}</div>
 		</div>
-		<div class="page">
-			<c:forEach var="userval" items="${user}">
-				<table>
-					<tr>
-						<td>Dane</td>
-						<td>Edycja</td>
-					</tr>
-					<tr>
-						<td><b> Imie:</b></td>
-						<td><input type="text" name="name"
-							value="${userval.getName()}"></td>
-					</tr>
-					<tr>
-						<td><b> Nazwisko:</b></td>
-						<td><input type="text" name="surname"
-							value="${userval.getSurname()}"></td>
-					</tr>
-					<tr>
-						<td><b> E-mail:</b></td>
-						<td><input type="text" name="mail"
-							value="${userval.getEmail()}"></td>
-					</tr>
-					<tr>
-						<td><b> Nr konta:</b></td>
-						<td><input type="text" name="account"
-							value="${userval.getAccount_number()}"></td>
-					</tr>
-					<tr>
-						<td><b> Stare hasło: </b></td>
-						<td><input type="password" name="password"></td>
-					</tr>
-					<tr>
-						<td><b> Nowe hasło: </b></td>
-						<td><input type="password" name="password"></td>
-					</tr>
-					<tr>
-						<td>Wyślij zmiany:</td>
-						<td><input type="button" name="send" value="Wyślij"></td>
-					</tr>
 
-				</table>
-
-			</c:forEach>
-		</div>
+		<c:forEach var="userval" items="${user}">
+			<form action="editUser" method="POST">
+				<div class="page">
+					<table>
+						<tr>
+							<td>Dane</td>
+							<td>Edycja</td>
+						</tr>
+						<tr>
+							<td><b> Imie:</b></td>
+							<td><input type="hidden" name="id"
+								value="${userval.getId() }"> <input type="text"
+								name="name" value="${userval.getName()}"></td>
+						</tr>
+						<tr>
+							<td><b> Nazwisko:</b></td>
+							<td><input type="text" name="surname"
+								value="${userval.getSurname()}"></td>
+						</tr>
+						<tr>
+							<td><b> E-mail:</b></td>
+							<td><input type="text" name="email"
+								value="${userval.getEmail()}"></td>
+						</tr>
+						<tr>
+							<td><b> Nr konta:</b></td>
+							<td><input type="text" name="account"
+								value="${userval.getAccount_number()}"></td>
+						</tr>
+						<tr>
+							<td><b> Stare hasło: </b></td>
+							<td><input type="password" name="oldpassword"></td>
+						</tr>
+						<tr>
+							<td><b> Nowe hasło: </b></td>
+							<td><input type="password" name="newpassword"></td>
+						</tr>
+						<tr>
+							<td>Wyślij zmiany:</td>
+							<td><input type="submit" name="send" value="Wyślij"
+								onclick="{return confirmation();}"></td>
+						</tr>
+					</table>
+				</div>
+			</form>
+		</c:forEach>
+	</div>
 </body>
-
 </html>
