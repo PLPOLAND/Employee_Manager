@@ -128,8 +128,18 @@ public class MainController {
 	}
 
 	@RequestMapping("/adduser")
-	public String loadAddUserPage() {
-		return "addUserPage";
+	public String loadAddUserPage(HttpServletRequest request) {
+
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				return "addUserPage";
+			}
+		} else {
+			return "redirect:/";
+		}
 	}
 
 	@RequestMapping(value = "/delete")

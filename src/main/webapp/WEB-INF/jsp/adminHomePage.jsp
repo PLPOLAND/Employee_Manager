@@ -40,7 +40,7 @@
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="#"><li>Dane użytkowników</li></a>
+					<a href="/ahome"><li>Dane użytkowników</li></a>
 					<a href="/adduser"><li>Dodaj użytkownika</li></a>
 				</ol>
 			</div>

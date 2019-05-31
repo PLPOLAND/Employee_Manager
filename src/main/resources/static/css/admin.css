@@ -158,6 +158,12 @@ body{
 	margin:0px;
 	border: 0px;
 }
+.przcisk_submit{
+	cursor: pointer;
+}
+.przcisk_submit:focus{
+	background-color: #00000050;
+}
 .pole_przycisku {
 	
 	padding: 1px !important;

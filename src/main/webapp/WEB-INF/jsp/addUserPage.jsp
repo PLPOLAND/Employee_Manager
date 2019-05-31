@@ -39,10 +39,10 @@
         <div class="banner">
             <div class="menu">
                 <ol>
-                    <a href="#">
+                    <a href="/ahome">
                         <li>Dane użytkowników</li>
                     </a>
-                    <a href="#">
+                    <a href="/adduser">
                         <li>Dodaj użytkownika</li>
                     </a>
                 </ol>
@@ -50,48 +50,6 @@
             <div class="dane">${userName}</div>
         </div>
         <div class="page">
-            <!-- <table>
-                <tr>
-                    <td>Login</td>
-                    <td>Hasło</td>
-                    <td>Imie</td>
-                    <td>Nazwisko</td>
-                    <td>Email</td>
-                    <td>Nr Konta Bankowego</td>
-                    <td>Wypłata NETTO</td>
-                    <td>Stanowisko</td>
-                    <td>Typ Umowy</td>
-                    <td>Typ Użytkownika</td>
-                </tr>
-                <tr>
-                    <form action="/addU" method="post">
-
-
-                        
-
-                        <td class="pole_przycisku"><input type="text" placeholder="Login" name="login" maxlength="30"></td>
-                        <td class="pole_przycisku"><input type="password" placeholder="Hasło" name = "pass" maxlength="30"></td>
-                        <td class="pole_przycisku"><input type="text" placeholder="Imie" name = "imie" maxlength="45"></td>
-                        <td class="pole_przycisku"><input type="text" placeholder="Nazwisko" name="nazwisko" maxlength="45"></td>
-                        <td class="pole_przycisku"><input type="email" placeholder="Email" name="Email" maxlength="45"></td>
-                        <td class="pole_przycisku"><input type="number" placeholder="Nr Konta Bankowego" name="nr_banku" ></td>
-                        <td class="pole_przycisku"><input type="number" placeholder="Wypłata NETTO" name="netto"></td>
-                        <td class="pole_przycisku"><input type="text" placeholder="Stanowisko" name="stanowisko" maxlength="50"></td>
-                        <td class="pole_przycisku">
-                        <select name="typ_umowy">
-                                <option>B2B</option>
-                                <option>UZ</option>
-                            </select>
-                        </td>
-                        <td class="pole_przycisku">
-                        <select name="typ_konta">
-                                <option  >Administrator</option>
-                                <option>Użytkownik</option>
-                            </select>
-                        </td>
-                    </form>
-                </tr>
-            </table> -->
             <table>
                 <form method="POST" action="/addU">
                     <tr>
@@ -151,7 +109,7 @@
 
                     <tr>
                         <td>Dodaj użytkownika:</td>
-                        <td class="pole_przycisku"><input type="submit" name="send" value="Wyślij"></td>
+                        <td class="pole_przycisku"><input class="przcisk_submit" type="submit" name="send" value="Wyślij"></td>
                     </tr>
                 </form>
             </table>
