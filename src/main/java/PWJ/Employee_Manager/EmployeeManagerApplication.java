@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import PWJ.Employee_Manager.security.Encryption;
-
 @SpringBootApplication
 
 public class EmployeeManagerApplication extends SpringBootServletInitializer {
