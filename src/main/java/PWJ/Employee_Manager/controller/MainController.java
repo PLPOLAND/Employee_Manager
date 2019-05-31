@@ -133,7 +133,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/delete")
-	public String test(@RequestParam("id") int id, HttpServletRequest request) {
+	public String deleteUser(@RequestParam("id") int id, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
@@ -146,5 +146,36 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	// commit dla ady
+	
+	@RequestMapping(value = "/edit")
+	public String editUserPage(@RequestParam("id") int id, HttpServletRequest request,Model model) {
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				List<User> user = userdao.find_user_by_id(id);
+				model.addAttribute("user", user);
+				return "editUserPage";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping(value = "/editUser")
+	public String editUser(@RequestParam("id") int id, HttpServletRequest request,Model model) {
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+			
+				return "redirect:/ahome";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+	
 }
