@@ -167,6 +167,10 @@ body{
 	margin-right: 5px;
 	cursor: default;
 }
+.dane:hover{
+	background-color: #004896;
+	cursor: default;
+}
 .page{
 	display: block;
 	position: absolute;
