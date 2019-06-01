@@ -61,19 +61,19 @@
 						</tr>
 						<tr>
 							<td><b> Imie:</b></td>
-							<td class="pole_przycisku"><input type="text" name="name" maxlength="30" ></td>
+							<td class="pole_przycisku"><input type="text" name="name" maxlength="30" value="${userval.getName()}"></td>
 						</tr>
 						<tr>
 							<td><b> Nazwisko:</b></td>
-							<td class="pole_przycisku"><input type="text" name="surname" maxlength="30" ></td>
+							<td class="pole_przycisku"><input type="text" name="surname" maxlength="30" value="${userval.getSurname()}"></td>
 						</tr>
 						<tr>
 							<td><b> E-mail:</b></td>
-							<td class="pole_przycisku"><input type="text" name="email" maxlength="30" ></td>
+							<td class="pole_przycisku"><input type="text" name="email" maxlength="30" value="${userval.getEmail()}"></td>
 						</tr>
 						<tr>
 							<td><b> Nr konta:</b></td>
-							<td class="pole_przycisku"><input type="text" name="account" maxlength="30" ></td>
+							<td class="pole_przycisku"><input type="text" name="account" maxlength="30" value="${userval.getAccount_number()}"></td>
 						</tr>
 						<tr>
 							<td><b> Stare hasło: </b></td>
