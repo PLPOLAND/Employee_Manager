@@ -9,6 +9,21 @@ public class Salary {
 	private double gross_salary;
 	private double tax; // w zaleznosci od typu umowy
 	
+	private User user;
+
+	public Salary(){
+		user = new User();
+	}
+	public void setUserAccount(String account_number){
+		user.setAccount_number(account_number);
+	}
+	public void setUserContractType(String contract_type){
+		user.setContract_type(contract_type);
+	}
+	public User getUserData(){
+		return user;
+	}
+	
 	public int getId_s() {
 		return id_s;
 	}

@@ -42,6 +42,7 @@
 				<ol>
 					<a href="/ahome"><li>Dane użytkowników</li></a>
 					<a href="/adduser"><li>Dodaj użytkownika</li></a>
+					<a href="/APayment"><li>Historia płac</li></a>
 				</ol>
 			</div>
 			<div class="dane">${userName}</div>

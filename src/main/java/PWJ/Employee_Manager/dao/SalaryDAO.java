@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import PWJ.Employee_Manager.model.Salary;
+import PWJ.Employee_Manager.model.User;
 
 @Repository
 public class SalaryDAO {
@@ -18,10 +19,16 @@ public class SalaryDAO {
 	private JdbcTemplate jdbc;
 
 	final String GET_USER_SALARY = "SELECT id_w,wyplaty.id_u,data_wyplaty,kwota_netto, typy_umowy.procent_podatku FROM wyplaty,uzytkownicy,typy_umowy WHERE wyplaty.id_u=uzytkownicy.id_u AND uzytkownicy.id_t=typy_umowy.id_t AND wyplaty.id_u=";
+	final String GET_USERS_SALARY = "SELECT * FROM wyplaty NATURAL JOIN uzytkownicy NATURAL JOIN typy_umowy";
 
 	public List<Salary> getUserSalary(int id) {
 
 		return this.jdbc.query(GET_USER_SALARY + "\"" + id + "\"", getUserSalaryMap());
+
+	}
+	public List<Salary> getUsersSalary() {
+
+		return this.jdbc.query(GET_USERS_SALARY, getUsersSalaryMap());
 
 	}
 
@@ -35,7 +42,28 @@ public class SalaryDAO {
 			salary.setNet_salary(rs.getDouble("kwota_netto"));
 			salary.setTax(rs.getDouble("procent_podatku"));
 			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(1,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
+			
 			salary.setGross_salary(bd.doubleValue());
+
+			return salary;
+		};
+
+		return tmpMap;
+
+	}
+	private RowMapper<Salary> getUsersSalaryMap() {
+
+		RowMapper<Salary> tmpMap = (rs, rowNum) -> {
+			Salary salary = new Salary();
+			salary.setId_s(rs.getInt("id_w"));
+			salary.setId_u(rs.getInt("id_u"));
+			salary.setPayday(rs.getString("data_wyplaty"));
+			salary.setNet_salary(rs.getDouble("kwota_netto"));
+			salary.setTax(rs.getDouble("procent_podatku"));
+			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(1,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
+			salary.setGross_salary(bd.doubleValue());
+			salary.setUserAccount(rs.getString("nr_konta"));
+			salary.setUserContractType(rs.getString("nazwa_skr"));;
 			return salary;
 		};
 

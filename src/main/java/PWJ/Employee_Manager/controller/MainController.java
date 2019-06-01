@@ -210,5 +210,23 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
+	@RequestMapping("/APayment")
+	public String payment(Model model, HttpServletRequest request){
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+
+				List<Salary> salary = salarydao.getUsersSalary();
+				model.addAttribute("userSalary", salary);
+
+				return "APaymentHistory";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
 	
 }
