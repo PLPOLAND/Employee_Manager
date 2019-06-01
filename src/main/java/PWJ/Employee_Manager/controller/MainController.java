@@ -220,8 +220,10 @@ public class MainController {
 			} else {
 
 				List<Salary> salary = salarydao.getUsersSalary();
+				Double totalPayment = salarydao.getTotalPayment();
 				model.addAttribute("userSalary", salary);
-
+				model.addAttribute("totalPayment",totalPayment);
+				
 				return "APaymentHistory";
 			}
 		} else {

@@ -20,7 +20,8 @@ public class SalaryDAO {
 
 	final String GET_USER_SALARY = "SELECT id_w,wyplaty.id_u,data_wyplaty,kwota_netto, typy_umowy.procent_podatku FROM wyplaty,uzytkownicy,typy_umowy WHERE wyplaty.id_u=uzytkownicy.id_u AND uzytkownicy.id_t=typy_umowy.id_t AND wyplaty.id_u=";
 	final String GET_USERS_SALARY = "SELECT * FROM wyplaty NATURAL JOIN uzytkownicy NATURAL JOIN typy_umowy";
-
+	final String GET_TOTAL_PAYMENT ="SELECT SUM(kwota_netto*(1+procent_podatku)) FROM wyplaty NATURAL JOIN typy_umowy NATURAL JOIN uzytkownicy";
+	
 	public List<Salary> getUserSalary(int id) {
 
 		return this.jdbc.query(GET_USER_SALARY + "\"" + id + "\"", getUserSalaryMap());
@@ -32,6 +33,9 @@ public class SalaryDAO {
 
 	}
 
+	public double getTotalPayment() {
+		return this.jdbc.queryForObject(GET_TOTAL_PAYMENT, Double.class);
+	}
 	private RowMapper<Salary> getUserSalaryMap() {
 
 		RowMapper<Salary> tmpMap = (rs, rowNum) -> {
@@ -64,6 +68,9 @@ public class SalaryDAO {
 			salary.setGross_salary(bd.doubleValue());
 			salary.setUserAccount(rs.getString("nr_konta"));
 			salary.setUserContractType(rs.getString("nazwa_skr"));;
+			salary.setUserName(rs.getString("imie"));
+			salary.setUserSurname(rs.getString("nazwisko"));
+			salary.setUserPosition(rs.getString("stanowisko"));
 			return salary;
 		};
 

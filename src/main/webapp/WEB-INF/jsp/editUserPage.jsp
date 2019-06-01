@@ -61,7 +61,9 @@
 						</tr>
 						<tr>
 							<td><b> Imie:</b></td>
-							<td class="pole_przycisku"><input type="text" name="name" maxlength="30" value="${userval.getName()}"></td>
+							<td class="pole_przycisku"><input type="hidden" name="id"
+								value="${userval.getId() }"><input type="text" name="name" maxlength="30" value="${userval.getName()}"></td>
+							
 						</tr>
 						<tr>
 							<td><b> Nazwisko:</b></td>

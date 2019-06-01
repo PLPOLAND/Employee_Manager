@@ -45,6 +45,7 @@
                     <a href="/adduser">
                         <li>Dodaj użytkownika</li>
                     </a>
+                    <a href="/APayment"><li>Historia płac</li></a>
                 </ol>
             </div>
             <div class="dane">${userName}</div>
@@ -78,7 +79,7 @@
                     </tr>
                     <tr>
                         <td> Nr konta:</td>
-                        <td  class="pole_przycisku"><input type="number" name="account" max="9999999999999999999999999"></td>
+                        <td  class="pole_przycisku"><input type="text" name="account" max="9999999999999999999999999"></td>
                     </tr>
                     <tr>
                         <td> Wypłata NETTO:</td>

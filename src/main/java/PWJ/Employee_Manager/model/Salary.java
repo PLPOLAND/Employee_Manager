@@ -20,6 +20,17 @@ public class Salary {
 	public void setUserContractType(String contract_type){
 		user.setContract_type(contract_type);
 	}
+	public void setUserName(String name) {
+		user.setName(name);
+	}
+	public void setUserSurname(String surname) {
+		user.setSurname(surname);
+	}
+	
+	public void setUserPosition(String position) {
+		user.setPosition(position);
+	}
+	
 	public User getUserData(){
 		return user;
 	}
