@@ -177,6 +177,19 @@ public class MainController {
 		}
 	}
 	
+	@RequestMapping("/Uedit")
+	public String UeditProfilePage(Model model, HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			List<User> user = userdao.find_user_by_id(sec.getUserID());
+			model.addAttribute("user", user);
+			return "UeditProfilePage";
+		} else {
+			return "redirect:/";
+		}
+	}
+	
 	@RequestMapping("/editUser")
 	public String editUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Security sec = new Security(request, userdao);

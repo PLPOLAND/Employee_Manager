@@ -36,6 +36,7 @@
 						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
 						<li><a class="nav-link" href="/paymenthistory"> Historia wypłat </a></li>
 						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
+						<li><a class="nav-link" href="/Uedit"> Edytuj profil </a></li>
 					</ul>
 				</div>
 			</nav>

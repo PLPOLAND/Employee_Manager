@@ -1,4 +1,4 @@
-
+﻿
 body {
 	 background-color: #83BDE9;
 }
@@ -32,6 +32,16 @@ body {
 	border-radius: 25px;
 	height:300px;
 	width: 400px;
+}
+
+.editprofile-container{
+	background-color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	height:350px;
+	width: 400px;
+
 }
 
 .login-container {
