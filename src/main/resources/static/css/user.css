@@ -20,7 +20,7 @@ body{
 	float: left;
 	margin-top: 0px;
 	margin-bottom: 0px;
-	max-width: 80%;
+	max-width: 90%;
 	background-color: #0062cc;
 	text-align: center;
 	padding: 0;
@@ -46,7 +46,7 @@ body{
 .menu ol > a > li
 {
 	float: left;
-	min-width: 150px;
+	min-width: 120px;
 	height: 40px;
 	border-right: 1px solid #17314D;
 	cursor: pointer;
@@ -82,7 +82,7 @@ body{
 	margin-top: 40px;
 	background-color: #003a79;
 	min-height: calc(100% - 40px);
-	width: 30%;
+	width: 80%;
 	top: 0px;
 	left: 0px; right: 0px;
 	margin-left: auto;
@@ -107,9 +107,9 @@ body{
 }
 .page > table tr{
 	height: 40px;
-	min-width: 30%;
+	min-width: 80%;
 	
-	margin: 2;
+	margin: 0;
 
 	border-color: #000000;
 	border-width: 1px;

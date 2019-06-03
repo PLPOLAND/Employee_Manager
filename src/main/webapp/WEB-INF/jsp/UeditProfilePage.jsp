@@ -10,50 +10,44 @@
 <html lang="pl">
 
 <head>
-	<!-- <link
-		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		rel="stylesheet" id="bootstrap-css">
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-	<!-- <script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-	<c:url value="/css/editUser.css" var="jstlCss" />
-	<link href="${jstlCss}" rel="stylesheet" />
+<!-- <link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<c:url value="/css/user.css" var="jstlCss" />
+<link href="${jstlCss}" rel="stylesheet" />
 
-	<script type="text/javascript">
-		function confirmation(userID) {
-			var retVal = confirm("Czy chcesz edytowac tego uzytkownika?");
-			if (retVal == true) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	</script>
+
+
 </head>
-
-
 
 <body>
 
-	<div class="container">
+<div class="container">
+	
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="/ahome">
-						<li>Dane użytkowników</li>
-					</a>
-					<a href="/adduser">
-						<li>Dodaj użytkownika</li>
-					</a>
+					<a href="/uhome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
+					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
+	
+					<a href="/myaccount"><li>Moje konto</li></a>
+					<a href="/Uedit"><li>Edytuj profil</li></a>
+					<a href="/paymenthistory"><li>Historia wypłat</li></a>
+					<a href="/contact"><li>Kontakt</li></a>
+					
 				</ol>
 			</div>
 			<div class="dane">${userName}</div>
 		</div>
-
+		
+		<div class="page">
 		<c:forEach var="userval" items="${user}">
 			<form action="editUser" method="POST">
-				<div class="page">
+				
 					<table>
 						<tr>
 							<td>Dane</td>
@@ -90,9 +84,12 @@
 							<td class="pole_przycisku"><input class="przcisk_submit" type="submit" name="send" value="Wyślij"></td>
 						</tr>
 					</table>
-				</div>
+				
 			</form>
 		</c:forEach>
+		</div>
 	</div>
+
 </body>
+
 </html>

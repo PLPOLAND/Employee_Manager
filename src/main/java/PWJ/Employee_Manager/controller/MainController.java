@@ -40,7 +40,7 @@ public class MainController {
 			if (security.isUserAdmin()) {
 				return "redirect:/ahome";
 			}
-			return "userHomePage";
+			return "redirect:/uhome";      //tu zmiana Ady!!!!!
 		} else {
 			return "redirect:/bad_login";
 		}
@@ -70,6 +70,8 @@ public class MainController {
 		}
 
 	}
+	
+
 
 	@RequestMapping("/paymenthistory")
 	public String loadPaymentHistoryPage(Model model, HttpServletRequest request) {

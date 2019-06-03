@@ -10,43 +10,50 @@
 <html lang="pl">
 
 <head>
-	<link
-		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		rel="stylesheet" id="bootstrap-css">
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-	<c:url value="/css/main.css" var="jstlCss" />
-	<link href="${jstlCss}" rel="stylesheet" />
-	<c:url value="/css/mystyle.css" var="jstlCss2" />
-	<link href="${jstlCss2}" rel="stylesheet" />
+<!-- <link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<c:url value="/css/user.css" var="jstlCss" />
+<link href="${jstlCss}" rel="stylesheet" />
+
+
+
 </head>
 
 <body>
-		<header>
-			<nav class="navbar navbar-dark navbar-expand-md" style='background-color: #61A4D7;'>
-				<a class="navbar-brand" href="/uhome"><img src="/logoinwebapp/logo2.png" width="30" height="30"
-				class="d-inline-block mr-1 align-bottom" alt="">
-				<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></a>
+
+<div class="container">
 	
-				<div>
-					<ul class="navbar-nav" >
-						<li><a class="nav-link" href="/uhome"> Strona główna </a></li>
-						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
-						<li><a class="nav-link" href="/paymenthistory"> Historia wypłat </a></li>
-						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
-						<li><a class="nav-link" href="/Uedit"> Edytuj profil </a></li>
-					</ul>
-				</div>
-			</nav>
-		</header>
+		<div class="banner">
+			<div class="menu">
+				<ol>
+					<a href="/uhome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
+					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
 	
-		<div class="home-style">
-		WITAJ!
-		<!--  commit dla ady  -->
+					<a href="/myaccount"><li>Moje konto</li></a>
+					<a href="/Uedit"><li>Edytuj profil</li></a>
+					<a href="/paymenthistory"><li>Historia wypłat</li></a>
+					<a href="/contact"><li>Kontakt</li></a>
+					
+				</ol>
+			</div>
+			<div class="dane">${userName}</div>
 		</div>
-    
+		
+		<div class="page">
+			
+			
+		</div>
+	</div>
+
 </body>
 
 </html>
+
+
+
+

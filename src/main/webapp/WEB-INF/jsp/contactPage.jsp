@@ -10,72 +10,50 @@
 <html lang="pl">
 
 <head>
-<link
+<!-- <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<c:url value="/css/main.css" var="jstlCss" />
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<c:url value="/css/user.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
-<c:url value="/css/mystyle.css" var="jstlCss2" />
-<link href="${jstlCss2}" rel="stylesheet" />
+
+
+
 </head>
 
 <body>
-	<c:forEach var="userval" items="${user}">
 
-		<header>
-			<nav class="navbar navbar-dark navbar-expand-md" style='background-color: #61A4D7;'>
-				<a class="navbar-brand" href="/uhome"><img src="/logoinwebapp/logo2.png" width="30" height="30"
-				class="d-inline-block mr-1 align-bottom" alt="">
-				<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></a>
+<div class="container">
 	
-				<div>
-					<ul class="navbar-nav" >
-						<li><a class="nav-link" href="/uhome"> Strona główna </a></li>
-						<li><a class="nav-link" href="/myaccount"> Moje konto </a></li>
-						<li><a class="nav-link" href="paymenthistory"> Historia wypłat </a></li>
-						<li><a class="nav-link" href="/contact"> Kontakt </a></li>
-						<li><a class="nav-link" href="/Uedit"> Edytuj profil </a></li>
-					</ul>
-					<!--   <div class="dane">${userval.getName()} ${userval.getSurname()}</div>  --> 
-				</div>
-			</nav>
-		</header>
-			
-		<div class="myaccount-container">
-			<h3>Moje konto</h3>
-
-			<table>
-				<tr>
-					<td>Imię:</td>
-					<td>${userval.getName()}</td>
-				</tr>
-				<tr>
-					<td>Nazwisko:</td>
-					<td>${userval.getSurname()}</td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td>${userval.getEmail()}</td>
-				</tr>
-				<tr>
-					<td>Numer konta:</td>
-					<td>${userval.getAccount_number()}</td>
-				</tr>
-				<tr>
-					<td>Stanowisko:</td>
-					<td>${userval.getPosition()}</td>
-				</tr>
-				<tr>
-					<td>Typ umowy:</td>
-					<td>${userval.getContract_type()}</td>
-				</tr>
-			</table>
+		<div class="banner">
+			<div class="menu">
+				<ol>
+					<a href="/uhome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
+					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
+	
+					<a href="/myaccount"><li>Moje konto</li></a>
+					<a href="/Uedit"><li>Edytuj profil</li></a>
+					<a href="/paymenthistory"><li>Historia wypłat</li></a>
+					<a href="/contact"><li>Kontakt</li></a>
+					
+				</ol>
+			</div>
+			<div class="dane">${userName}</div>
 		</div>
-	</c:forEach>
+		
+		<div class="page">
+			
+			
+		</div>
+	</div>
+
 </body>
 
 </html>
+
+
+
+

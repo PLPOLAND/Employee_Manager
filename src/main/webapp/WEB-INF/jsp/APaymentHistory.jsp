@@ -28,6 +28,10 @@
 		<div class="banner">
 			<div class="menu">
 				<ol>
+					<a href="/ahome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30"
+					class="d-inline-block mr-1 align-bottom" alt="">
+					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
+					
 					<a href="/ahome">
 						<li>Dane użytkowników</li>
 					</a>
