@@ -60,6 +60,7 @@ public class MainController {
 
 				List<User> userList = userdao.findAll();
 				model.addAttribute("userList", userList);
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				return "userHomePage";
 			} else {
 				return "redirect:/ahome";
@@ -82,6 +83,7 @@ public class MainController {
 			List<User> user = userdao.find_user_by_id(sec.getUserID());
 			model.addAttribute("user", user);
 			model.addAttribute("userSalary", salary);
+			model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 			return "paymentHistoryPage";
 		} else {
 			return "redirect:/";
@@ -96,6 +98,7 @@ public class MainController {
 		if (sec.isLoged()) {
 			List<User> user = userdao.find_user_by_id(sec.getUserID());
 			model.addAttribute("user", user);
+			model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 			return "myAccountPage";
 		} else {
 			return "redirect:/";
@@ -103,7 +106,9 @@ public class MainController {
 	}
 
 	@RequestMapping("/contact")
-	public String loadContactPage() {
+	public String loadContactPage(Model model, HttpServletRequest request) {
+		Security sec = new Security(request,userdao);
+		model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 		return "contactPage";
 	}
 
@@ -133,13 +138,14 @@ public class MainController {
 	}
 
 	@RequestMapping("/adduser")
-	public String loadAddUserPage(HttpServletRequest request) {
+	public String loadAddUserPage(HttpServletRequest request,Model model) {
 
 		Security sec = new Security(request, userdao);
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				return "addUserPage";
 			}
 		} else {
@@ -186,6 +192,7 @@ public class MainController {
 		if (sec.isLoged()) {
 			List<User> user = userdao.find_user_by_id(sec.getUserID());
 			model.addAttribute("user", user);
+			model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 			return "UeditProfilePage";
 		} else {
 			return "redirect:/";
@@ -225,6 +232,34 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
+	
+	@RequestMapping("/addU")
+	public String addUser(HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				User newuser =  new User();
+				newuser.setLogin(request.getParameter("login")); 
+				newuser.setName(request.getParameter("name"));
+				newuser.setSurname(request.getParameter("surname"));
+				newuser.setEmail(request.getParameter("mail"));
+				newuser.setAccount_number(request.getParameter("account"));
+				newuser.setPassword(request.getParameter("password"));
+				newuser.setNet_salary(Double.parseDouble(request.getParameter("net_salary")));
+				newuser.setPosition(request.getParameter("position"));
+				int contract_type_id=userdao.get_contract_type_id(request.getParameter("contract_type"));
+				int account_type_id=userdao.get_account_type_id(request.getParameter("account_type"));
+				
+				
+				return "redirect:/ahome";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+	
 	@RequestMapping("/APayment")
 	public String payment(Model model, HttpServletRequest request){
 		Security sec = new Security(request, userdao);
@@ -238,12 +273,20 @@ public class MainController {
 				Double totalPayment = salarydao.getTotalPayment();
 				model.addAttribute("userSalary", salary);
 				model.addAttribute("totalPayment",totalPayment);
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				
 				return "APaymentHistory";
 			}
 		} else {
 			return "redirect:/";
 		}
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		Security sec = new Security(request,userdao);
+		sec.logout();
+		return "redirect:/";
 	}
 	
 }

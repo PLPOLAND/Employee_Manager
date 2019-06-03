@@ -3,6 +3,7 @@ package PWJ.Employee_Manager.model;
 public class User {
 
 	private int id;
+	private String login;
 	private String name;
 	private String surname;
 	private String email;
@@ -16,6 +17,14 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public void setId(int id) {

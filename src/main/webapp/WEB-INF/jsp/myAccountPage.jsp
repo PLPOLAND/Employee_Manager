@@ -41,7 +41,7 @@
 					
 				</ol>
 			</div>
-			<div class="dane">${userName}</div>
+			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a></div>
 		</div>
 		
 		<div class="page">

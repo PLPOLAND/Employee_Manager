@@ -21,7 +21,14 @@ public class UsersDAO {
 	final String DELETE_USER_1 = "DELETE FROM loginy WHERE id_u=?"; // usuwamy z 1 tabeli
 	final String DELETE_USER_2 = "DELETE FROM uzytkownicy WHERE id_u=?"; // usuwamy z 2 tabeli
 	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=? WHERE id_u=?"; 																								// hasla
-	final String EDIT_USER_2 = "UPDATE loginy SET haslo=? WHERE id_u=?"; 
+	final String EDIT_USER_2 = "UPDATE loginy SET haslo=? WHERE id_u=?";
+	final String GET_ACCOUNT_TYPE_ID="SELECT id_t FROM typy_konta WHERE nazwa=";
+	final String GET_CONTRACT_TYPE_ID="SELECT id_t FROM typy_umowy WHERE nazwa_skr=";
+	final String GET_USER_ID="";
+	final String ADD_USER_1=""; // do tabeli uzytkownicy
+	final String ADD_USER_2=""; // do tabeli loginy
+	
+	
 	public List<User> findAll() {
 
 		return this.jdbc.query(GET_ALL_USERS, getMap());
@@ -39,8 +46,8 @@ public class UsersDAO {
 		return this.jdbc.query(GET_ALL_USERS + " WHERE uzytkownicy.id_u = \"" + id + "\"", getMap());
 	}
 
-	public void addUser(String name, String surname) { // niedokonczone
-		jdbc.update(SET_USER, name, surname);
+	public void addUser(User user, int contract_id, int account_type_id) { // niedokonczone
+		//jdbc.update(SET_USER, name, surname);
 	}
 
 	public void deleteUser(int id) {
@@ -55,8 +62,14 @@ public class UsersDAO {
 	public void editUser_2(int id, String name, String surname, String email, String account, String password) {
 		jdbc.update(EDIT_USER_2, password,id);
 		jdbc.update(EDIT_USER_1, name, surname, email, account, id);
-		
-		
+	}
+	
+	public int get_contract_type_id(String type) {
+		return this.jdbc.queryForObject(GET_CONTRACT_TYPE_ID+"\""+type+"\"", Integer.class);
+	}
+	
+	public int get_account_type_id(String type) {
+		return this.jdbc.queryForObject(GET_ACCOUNT_TYPE_ID+"\""+type+"\"", Integer.class);
 	}
 
 	private RowMapper<User> getLoginMap() {
