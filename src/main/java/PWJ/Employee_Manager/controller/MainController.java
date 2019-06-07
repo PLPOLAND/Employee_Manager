@@ -177,6 +177,7 @@ public class MainController {
 			} else {
 				List<User> user = userdao.find_user_by_id(id);
 				model.addAttribute("user", user);
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				return "editUserPage";
 				
 			}
