@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Maj 2019, 20:54
--- Wersja serwera: 10.1.38-MariaDB
--- Wersja PHP: 7.3.2
+-- Czas generowania: 07 Cze 2019, 12:43
+-- Wersja serwera: 10.1.39-MariaDB
+-- Wersja PHP: 7.1.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,8 +40,8 @@ CREATE TABLE `loginy` (
 --
 
 INSERT INTO `loginy` (`ID`, `id_u`, `login`, `haslo`) VALUES
-(1, 1, 'MarcinK', 'MarcineK'),
-(2, 2, 'MarekP', 'MareczekP');
+(1, 1, 'MarcinK', '!xv2a0@8oS$l1!?kmz:.S7;3L]'),
+(2, 2, 'MarekP', 'LGG[1Yka@!Q=XNd6>Kukvtfp5anrha');
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,7 @@ CREATE TABLE `uzytkownicy` (
 --
 
 INSERT INTO `uzytkownicy` (`id_u`, `imie`, `nazwisko`, `mail`, `nr_konta`, `wyplata_netto`, `stanowisko`, `id_t`, `id_tk`) VALUES
-(1, 'Marcin', 'Kos', 'abcd@gmail.com', '1111222233334444', 10000, 'Programista', 2, 2),
+(1, 'Marcin', 'Kos', 'abcd@gmail.com', '1111222233334444', 10000, 'Programista', 2, 1),
 (2, 'Marek', 'Pałdyna', 'marek@marek.pl', '5555444433331111', 9000, 'Programista', 3, 2);
 
 -- --------------------------------------------------------
@@ -177,7 +177,7 @@ ALTER TABLE `wyplaty`
 -- AUTO_INCREMENT dla tabeli `loginy`
 --
 ALTER TABLE `loginy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `typy_konta`
@@ -195,7 +195,7 @@ ALTER TABLE `typy_umowy`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `wyplaty`
