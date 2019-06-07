@@ -154,7 +154,10 @@ public class Security{
             return null;
         }
     }
-
+    /**
+     * Funckja sprawdza czy zalogowany użytkownik jest Adminem
+     * @return Czy użytkownik jest adminem
+     */
     public boolean isUserAdmin(){
         if(isLoged()){
             HttpSession session = request.getSession();
