@@ -52,10 +52,9 @@ public class Security{
             return false; 
         }
         
-        // Encryption hashownik = new Encryption();
+        Encryption hashownik = new Encryption();
 
-        // pass = hashownik.encryptPassword(pass);
-
+        pass = hashownik.encryptPassword(pass);
         
         String warunek = "loginy.haslo = \"" + pass + "\" AND  login = \"" + login + "\"";
         List<User> resultUsers = database.find_to_login(warunek);
