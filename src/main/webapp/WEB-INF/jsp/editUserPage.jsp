@@ -56,6 +56,9 @@
 					<a href="/APayment">
 						<li>Historia płac</li>
 					</a>
+					<a href="/AddPay">
+						<li>Dodaj płacę</li>
+					</a>
 				</ol>
 			</div>
 			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a>
@@ -128,7 +131,7 @@
 						</tr>
 						<tr>
 							<td>Zapisz zmiany:</td>
-							<td><input type="submit" name="send" value="Wyślij"
+							<td><input type="submit" name="send" value="Zapisz"
 								onclick="{return confirmation();}"></td>
 						</tr>
 					</table>

@@ -283,6 +283,23 @@ public class MainController {
 		}
 	}
 	
+	@RequestMapping("/AddPay")
+	public String adding_pay(Model model, HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
+
+				return "AddPay";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		Security sec = new Security(request,userdao);
