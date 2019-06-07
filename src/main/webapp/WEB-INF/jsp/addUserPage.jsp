@@ -20,17 +20,6 @@
     <c:url value="/css/admin.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
 
-    <script type="text/javascript">
-        function confirmation(userID) {
-            var retVal = confirm("Czy chcesz usunac tego uzytkownika?");
-            if (retVal == true) {
-                window.location.href = '/delete?id=' + userID;
-            } else {
-                window.location.href = '/ahome';
-            }
-        }
-    </script>
-
 </head>
 
 <body>
@@ -94,8 +83,9 @@
                         <td>Typ Umowy</td>
                         <td class="pole_przycisku">
                             <select name="contract_type" required="required">
-                                <option>B2B</option>
-                                <option>UZ</option>
+                            <c:forEach var="contractTypes" items="${contractTypes}">
+                            <option value="${contractTypes.getId() }">${contractTypes.getShort_name()}</option>
+                               </c:forEach>
                             </select>
                         </td>
                     </tr>
@@ -103,8 +93,9 @@
                         <td>Typ Konta</td>
                         <td class="pole_przycisku">
                             <select name="account_type" required="required">
-                                <option>Administrator</option>
-                                <option>Użytkownik</option>
+                            <c:forEach var="accountTypes" items="${accountTypes}">
+                            <option value="${accountTypes.getId()}">${accountTypes.getName()}</option>
+                               </c:forEach>
                             </select>
                         </td>
                     </tr>

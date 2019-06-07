@@ -13,10 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import PWJ.Employee_Manager.dao.AccountTypesDAO;
+import PWJ.Employee_Manager.dao.ContractTypesDAO;
 import PWJ.Employee_Manager.dao.SalaryDAO;
 import PWJ.Employee_Manager.dao.UsersDAO;
+import PWJ.Employee_Manager.model.AccountTypes;
+import PWJ.Employee_Manager.model.ContractTypes;
 import PWJ.Employee_Manager.model.Salary;
 import PWJ.Employee_Manager.model.User;
+import PWJ.Employee_Manager.security.Encryption;
 import PWJ.Employee_Manager.security.Security;
 
 @Controller
@@ -26,6 +31,10 @@ public class MainController {
 	UsersDAO userdao;
 	@Autowired
 	SalaryDAO salarydao;
+	@Autowired
+	AccountTypesDAO acdao;
+	@Autowired
+	ContractTypesDAO ctdao;
 
 	@RequestMapping("/")
 	public String loadLoginPage() {
@@ -145,7 +154,11 @@ public class MainController {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
+				List<AccountTypes> ac = acdao.getAccountTypes();
+				List<ContractTypes> ct = ctdao.getContractTypes();
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
+				model.addAttribute("accountTypes", ac);
+				model.addAttribute("contractTypes", ct);
 				return "addUserPage";
 			}
 		} else {
@@ -242,18 +255,20 @@ public class MainController {
 				return "redirect:/uhome";
 			} else {
 				User newuser =  new User();
+				AccountTypes ac = new AccountTypes();
+				ContractTypes ct = new ContractTypes();
+				Encryption ec = new Encryption();
 				newuser.setLogin(request.getParameter("login")); 
 				newuser.setName(request.getParameter("name"));
 				newuser.setSurname(request.getParameter("surname"));
 				newuser.setEmail(request.getParameter("mail"));
 				newuser.setAccount_number(request.getParameter("account"));
-				newuser.setPassword(request.getParameter("password"));
+				newuser.setPassword(ec.encryptPassword(request.getParameter("password")));
 				newuser.setNet_salary(Double.parseDouble(request.getParameter("net_salary")));
 				newuser.setPosition(request.getParameter("position"));
-				int contract_type_id=userdao.get_contract_type_id(request.getParameter("contract_type"));
-				int account_type_id=userdao.get_account_type_id(request.getParameter("account_type"));
-				
-				
+				ac.setId(Integer.parseInt(request.getParameter("account_type")));
+				ct.setId(Integer.parseInt(request.getParameter("contract_type")));
+				userdao.addUser(newuser, ct, ac);
 				return "redirect:/ahome";
 			}
 		} else {

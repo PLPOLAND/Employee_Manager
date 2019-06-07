@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import PWJ.Employee_Manager.model.AccountTypes;
+import PWJ.Employee_Manager.model.ContractTypes;
 import PWJ.Employee_Manager.model.User;
 
 @Repository
@@ -16,7 +18,6 @@ public class UsersDAO {
 	private JdbcTemplate jdbc;
 
 	final String GET_ALL_USERS = "SELECT loginy.login, uzytkownicy.id_u, imie, nazwisko, haslo, mail, nr_konta, wyplata_netto, stanowisko, typy_umowy.nazwa_skr, typy_konta.nazwa FROM uzytkownicy LEFT JOIN loginy ON loginy.id_u = uzytkownicy.id_u LEFT JOIN typy_umowy ON uzytkownicy.id_t=typy_umowy.id_t LEFT JOIN typy_konta ON uzytkownicy.id_tk = typy_konta.id_t";
-	final String SET_USER = "INSERT INTO uzytk (imie,nazwisko) VALUES (?,?)"; // niedokonczone
 	final String FIND_USER_LOGIN = " SELECT uzytkownicy.id_u, uzytkownicy.imie, uzytkownicy.nazwisko, typy_konta.nazwa FROM uzytkownicy NATURAL JOIN loginy LEFT JOIN typy_konta ON typy_konta.id_t = uzytkownicy.id_tk ";
 	final String DELETE_USER_1 = "DELETE FROM loginy WHERE id_u=?"; // usuwamy z 1 tabeli
 	final String DELETE_USER_2 = "DELETE FROM uzytkownicy WHERE id_u=?"; // usuwamy z 2 tabeli
@@ -24,9 +25,9 @@ public class UsersDAO {
 	final String EDIT_USER_2 = "UPDATE loginy SET haslo=? WHERE id_u=?";
 	final String GET_ACCOUNT_TYPE_ID="SELECT id_t FROM typy_konta WHERE nazwa=";
 	final String GET_CONTRACT_TYPE_ID="SELECT id_t FROM typy_umowy WHERE nazwa_skr=";
-	final String GET_USER_ID="";
-	final String ADD_USER_1=""; // do tabeli uzytkownicy
-	final String ADD_USER_2=""; // do tabeli loginy
+	final String GET_USER_ID="SELECT id_u FROM uzytkownicy WHERE imie=? AND nazwisko=? AND  mail=? AND nr_konta=?";
+	final String ADD_USER_1="INSERT INTO uzytkownicy (imie,nazwisko,mail,nr_konta,wyplata_netto,stanowisko,id_t,id_tk) VALUES (?,?,?,?,?,?,?,?)"; // do tabeli uzytkownicy
+	final String ADD_USER_2="INSERT INTO loginy (id_u,login,haslo) VALUES(?,?,?)"; // do tabeli loginy
 	
 	
 	public List<User> findAll() {
@@ -46,8 +47,10 @@ public class UsersDAO {
 		return this.jdbc.query(GET_ALL_USERS + " WHERE uzytkownicy.id_u = \"" + id + "\"", getMap());
 	}
 
-	public void addUser(User user, int contract_id, int account_type_id) { // niedokonczone
-		//jdbc.update(SET_USER, name, surname);
+	public void addUser(User us, ContractTypes ct, AccountTypes at) { 
+		jdbc.update(ADD_USER_1, us.getName(),us.getSurname(),us.getEmail(), us.getAccount_number(), us.getNet_salary(), us.getPosition(), ct.getId(), at.getId());
+		int new_user_id = jdbc.queryForObject(GET_USER_ID, Integer.class, us.getName(),us.getSurname(),us.getEmail(), us.getAccount_number());
+		jdbc.update(ADD_USER_2, new_user_id,us.getLogin(),us.getPassword());
 	}
 
 	public void deleteUser(int id) {
