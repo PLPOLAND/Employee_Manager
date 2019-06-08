@@ -65,7 +65,7 @@
         </div>
         <div class="page">
             <table>
-                <form method="POST" action="#" autocomplete="off"> <!-- Dodać cel -->
+                <form method="POST" action="/AddP" autocomplete="off"> 
                     <tr>
                         <td>Dane</td>
                         <td>Edycja</td>
@@ -73,20 +73,21 @@
                     <tr>
                         <td>Numer Konta Bankowego</td>
                         <td class="pole_przycisku">
-                            <select name="account_type" required="required">
-                                <option>2345678909</option>
-                                <option>1234567898</option>
+                            <select name="userID" required="required">
+                               <c:forEach var="us" items="${userList}">
+                               <option value="${us.getId() }"> ${us.getName()} ${us.getSurname() } - ${us.getAccount_number() } </option>
+                               </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Data</td>
-                        <td class="pole_przycisku"><input type="date" name="data" required="required" ></td>
+                        <td class="pole_przycisku"><input type="date" name="date" required="required" ></td>
                     </tr>
                     </tr>
                     <tr>
                         <td>Kwota</td>
-                        <td class="pole_przycisku"><input type="text" name="kwota" required="required" maxlength="30"></td>
+                        <td class="pole_przycisku"><input type="text" name="ammount" required="required" maxlength="30"></td>
                     </tr>
                     <tr>
                         <td>Dodaj Płacę:</td>

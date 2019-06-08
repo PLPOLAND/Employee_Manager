@@ -49,7 +49,7 @@ public class MainController {
 			if (security.isUserAdmin()) {
 				return "redirect:/ahome";
 			}
-			return "redirect:/uhome";      //tu zmiana Ady!!!!!
+			return "redirect:/uhome"; // tu zmiana Ady!!!!!
 		} else {
 			return "redirect:/bad_login";
 		}
@@ -80,8 +80,6 @@ public class MainController {
 		}
 
 	}
-	
-
 
 	@RequestMapping("/paymenthistory")
 	public String loadPaymentHistoryPage(Model model, HttpServletRequest request) {
@@ -116,7 +114,7 @@ public class MainController {
 
 	@RequestMapping("/contact")
 	public String loadContactPage(Model model, HttpServletRequest request) {
-		Security sec = new Security(request,userdao);
+		Security sec = new Security(request, userdao);
 		model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 		return "contactPage";
 	}
@@ -147,7 +145,7 @@ public class MainController {
 	}
 
 	@RequestMapping("/adduser")
-	public String loadAddUserPage(HttpServletRequest request,Model model) {
+	public String loadAddUserPage(HttpServletRequest request, Model model) {
 
 		Security sec = new Security(request, userdao);
 		if (sec.isLoged()) {
@@ -160,6 +158,35 @@ public class MainController {
 				model.addAttribute("accountTypes", ac);
 				model.addAttribute("contractTypes", ct);
 				return "addUserPage";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+
+	@RequestMapping("/addU")
+	public String addUser(HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				User newuser = new User();
+				AccountTypes ac = new AccountTypes();
+				ContractTypes ct = new ContractTypes();
+				Encryption ec = new Encryption();
+				newuser.setLogin(request.getParameter("login"));
+				newuser.setName(request.getParameter("name"));
+				newuser.setSurname(request.getParameter("surname"));
+				newuser.setEmail(request.getParameter("mail"));
+				newuser.setAccount_number(request.getParameter("account"));
+				newuser.setPassword(ec.encryptPassword(request.getParameter("password")));
+				newuser.setNet_salary(Double.parseDouble(request.getParameter("net_salary")));
+				newuser.setPosition(request.getParameter("position"));
+				ac.setId(Integer.parseInt(request.getParameter("account_type")));
+				ct.setId(Integer.parseInt(request.getParameter("contract_type")));
+				userdao.addUser(newuser, ct, ac);
+				return "redirect:/ahome";
 			}
 		} else {
 			return "redirect:/";
@@ -180,9 +207,9 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping(value = "/edit")
-	public String editUserPage(@RequestParam("id") int id, HttpServletRequest request,Model model) {
+	public String editUserPage(@RequestParam("id") int id, HttpServletRequest request, Model model) {
 		Security sec = new Security(request, userdao);
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
@@ -192,13 +219,13 @@ public class MainController {
 				model.addAttribute("user", user);
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				return "editUserPage";
-				
+
 			}
 		} else {
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping("/Uedit")
 	public String UeditProfilePage(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
@@ -212,7 +239,7 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping("/editUser")
 	public String editUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Security sec = new Security(request, userdao);
@@ -229,14 +256,12 @@ public class MainController {
 				String account = request.getParameter("account");
 				String old_pass = request.getParameter("oldpassword");
 				String new_pass = request.getParameter("newpassword");
-				
-				if(old_pass.equals("")) { // gdy nie zmieniamy hasła
-					userdao.editUser_1(id,name,surname,email,account);
-				}
-				else if(!old_pass.equals("") || !new_pass.equals("")) {
-					userdao.editUser_2(id,name,surname,email,account,new_pass);
-					
-					
+
+				if (old_pass.equals("")) { // gdy nie zmieniamy hasła
+					userdao.editUser_1(id, name, surname, email, account);
+				} else if (!old_pass.equals("") || !new_pass.equals("")) {
+					userdao.editUser_2(id, name, surname, email, account, new_pass);
+
 					// TODO: sprawdzanie czy stare haslo jest poprawne
 					// i wswietlenie komunikatu jesli okaze sie nieprawidlowe
 				}
@@ -246,38 +271,9 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	
-	@RequestMapping("/addU")
-	public String addUser(HttpServletRequest request) {
-		Security sec = new Security(request, userdao);
-		if (sec.isLoged()) {
-			if (!sec.isUserAdmin()) {
-				return "redirect:/uhome";
-			} else {
-				User newuser =  new User();
-				AccountTypes ac = new AccountTypes();
-				ContractTypes ct = new ContractTypes();
-				Encryption ec = new Encryption();
-				newuser.setLogin(request.getParameter("login")); 
-				newuser.setName(request.getParameter("name"));
-				newuser.setSurname(request.getParameter("surname"));
-				newuser.setEmail(request.getParameter("mail"));
-				newuser.setAccount_number(request.getParameter("account"));
-				newuser.setPassword(ec.encryptPassword(request.getParameter("password")));
-				newuser.setNet_salary(Double.parseDouble(request.getParameter("net_salary")));
-				newuser.setPosition(request.getParameter("position"));
-				ac.setId(Integer.parseInt(request.getParameter("account_type")));
-				ct.setId(Integer.parseInt(request.getParameter("contract_type")));
-				userdao.addUser(newuser, ct, ac);
-				return "redirect:/ahome";
-			}
-		} else {
-			return "redirect:/";
-		}
-	}
-	
+
 	@RequestMapping("/APayment")
-	public String payment(Model model, HttpServletRequest request){
+	public String payment(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
@@ -288,38 +284,57 @@ public class MainController {
 				List<Salary> salary = salarydao.getUsersSalary();
 				Double totalPayment = salarydao.getTotalPayment();
 				model.addAttribute("userSalary", salary);
-				model.addAttribute("totalPayment",totalPayment);
+				model.addAttribute("totalPayment", totalPayment);
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
-				
+
 				return "APaymentHistory";
 			}
 		} else {
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping("/AddPay")
-	public String adding_pay(Model model, HttpServletRequest request) {
+	public String adding_pay_form(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
 
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
+				List<User> userList = userdao.findAll();
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
-
+				model.addAttribute("userList", userList);
 				return "AddPay";
 			}
 		} else {
 			return "redirect:/";
 		}
 	}
-	
+
+	@RequestMapping("/AddP")
+	public String adding_pay(HttpServletRequest request) {
+		Security sec = new Security(request, userdao);
+		if (sec.isLoged()) {
+			if (!sec.isUserAdmin()) {
+				return "redirect:/uhome";
+			} else {
+				String id = request.getParameter("userID");
+				String date = request.getParameter("date");
+				String ammount = request.getParameter("ammount");
+				salarydao.addPayment(id, date, ammount);
+				return "redirect:/ahome";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
-		Security sec = new Security(request,userdao);
+		Security sec = new Security(request, userdao);
 		sec.logout();
 		return "redirect:/";
 	}
-	
+
 }

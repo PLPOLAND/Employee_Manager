@@ -1,7 +1,6 @@
 package PWJ.Employee_Manager.dao;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import PWJ.Employee_Manager.model.Salary;
-import PWJ.Employee_Manager.model.User;
 
 @Repository
 public class SalaryDAO {
@@ -21,6 +19,8 @@ public class SalaryDAO {
 	final String GET_USER_SALARY = "SELECT id_w,wyplaty.id_u,data_wyplaty,kwota_netto, typy_umowy.procent_podatku FROM wyplaty,uzytkownicy,typy_umowy WHERE wyplaty.id_u=uzytkownicy.id_u AND uzytkownicy.id_t=typy_umowy.id_t AND wyplaty.id_u=";
 	final String GET_USERS_SALARY = "SELECT * FROM wyplaty NATURAL JOIN uzytkownicy NATURAL JOIN typy_umowy";
 	final String GET_TOTAL_PAYMENT ="SELECT SUM(kwota_netto*(1+procent_podatku)) FROM wyplaty NATURAL JOIN typy_umowy NATURAL JOIN uzytkownicy";
+	final String ADD_PAYMENT ="INSERT INTO wyplaty (id_u,data_wyplaty,kwota_netto) VALUES (?,?,?)";
+	
 	
 	public List<Salary> getUserSalary(int id) {
 
@@ -35,6 +35,10 @@ public class SalaryDAO {
 
 	public double getTotalPayment() {
 		return this.jdbc.queryForObject(GET_TOTAL_PAYMENT, Double.class);
+	}
+	
+	public void addPayment(String id, String date, String ammount) {
+		jdbc.update(ADD_PAYMENT, id,date,ammount);
 	}
 	private RowMapper<Salary> getUserSalaryMap() {
 
