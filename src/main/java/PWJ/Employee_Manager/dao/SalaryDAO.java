@@ -17,7 +17,7 @@ public class SalaryDAO {
 	private JdbcTemplate jdbc;
 
 	final String GET_USER_SALARY = "SELECT id_w,wyplaty.id_u,data_wyplaty,kwota_netto, typy_umowy.procent_podatku FROM wyplaty,uzytkownicy,typy_umowy WHERE wyplaty.id_u=uzytkownicy.id_u AND uzytkownicy.id_t=typy_umowy.id_t AND wyplaty.id_u=";
-	final String GET_USERS_SALARY = "SELECT * FROM wyplaty NATURAL JOIN uzytkownicy NATURAL JOIN typy_umowy";
+	final String GET_USERS_SALARY = "SELECT * FROM wyplaty NATURAL JOIN uzytkownicy NATURAL JOIN typy_umowy ORDER BY data_wyplaty DESC";
 	final String GET_TOTAL_PAYMENT ="SELECT SUM(kwota_netto*(1+procent_podatku)) FROM wyplaty NATURAL JOIN typy_umowy NATURAL JOIN uzytkownicy";
 	final String ADD_PAYMENT ="INSERT INTO wyplaty (id_u,data_wyplaty,kwota_netto) VALUES (?,?,?)";
 	

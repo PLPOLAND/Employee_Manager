@@ -68,7 +68,7 @@
 						<td>${salary.getUserData().getName()}</td>
 						<td>${salary.getUserData().getSurname()}</td>
 						<td>${salary.getUserData().getAccount_number()}</td>
-						<td>${salary.getPayday()}</td>
+						<td><b>${salary.getPayday()}</b></td>
 						<td>${salary.getUserData().getPosition() }</td>
 						<td>${salary.getUserData().getContract_type()}</td>
 						<td>${salary.getNet_salary()}zł</td>
@@ -80,7 +80,7 @@
 				
 					
 					<td colspan="8">Suma kosztów:  </td>
-					<td>${totalPayment}</td>
+					<td>${totalPayment}zł</td>
 				</tr>
 			</table>
 
