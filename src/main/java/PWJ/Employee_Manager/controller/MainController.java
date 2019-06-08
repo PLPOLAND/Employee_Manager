@@ -2,6 +2,7 @@ package PWJ.Employee_Manager.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -282,9 +283,9 @@ public class MainController {
 			} else {
 
 				List<Salary> salary = salarydao.getUsersSalary();
-				Double totalPayment = salarydao.getTotalPayment();
+				BigDecimal bd = new BigDecimal(salarydao.getTotalPayment()).setScale(1,BigDecimal.ROUND_HALF_DOWN);
 				model.addAttribute("userSalary", salary);
-				model.addAttribute("totalPayment", totalPayment);
+				model.addAttribute("totalPayment", bd.doubleValue());
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 
 				return "APaymentHistory";

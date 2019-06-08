@@ -57,11 +57,11 @@
                     </tr>
                     <tr>
                         <td> Imie:</td>
-                        <td  class="pole_przycisku"><input type="text" name="name" required="required" maxlength="45"></td>
+                        <td  class="pole_przycisku"><input type="text" name="name" required="required" pattern="[\\p{IsAlphabetic}\\s]+" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> Nazwisko:</td>
-                        <td  class="pole_przycisku"><input type="text" name="surname" required="required" maxlength="45"></td>
+                        <td  class="pole_przycisku"><input type="text" name="surname" required="required" pattern="[\\p{IsAlphabetic}\\s]+" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> E-mail:</td>
@@ -69,15 +69,15 @@
                     </tr>
                     <tr>
                         <td> Nr konta:</td>
-                        <td  class="pole_przycisku"><input type="text" name="account" required="required" max="9999999999999999999999999"></td>
+                        <td  class="pole_przycisku"><input type="text" name="account" required="required" pattern="^[0-9]+$" maxlength="26"></td>
                     </tr>
                     <tr>
                         <td> Wypłata NETTO:</td>
-                        <td class="pole_przycisku"><input type="text" name="net_salary" required="required"></td>
+                        <td class="pole_przycisku" lang="en-US"><input type="number" name="net_salary" min="1" step="0.5" required="required"></td>
                     </tr>
                     <tr>
                         <td>Stanowisko: </td>
-                        <td class="pole_przycisku"><input type="text" name="position" required="required"></td>
+                        <td class="pole_przycisku"><input type="text" name="position" pattern="^[A-Za-z\s]+$" required="required"></td>
                     </tr>
                     <tr>
                         <td>Typ Umowy</td>
