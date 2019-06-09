@@ -84,7 +84,7 @@
 						</tr>
 						<tr>
 							<td> Hasło: </td>
-							<td class="pole_przycisku"><input type="password" name="password" autocomplete="new-password" required="required" maxlength="30"></td>
+							<td class="pole_przycisku"><input type="password" name="password" autocomplete="new-password" maxlength="30"></td>
 						</tr>
 						<tr>
 							<td> Imie:</td>

@@ -21,16 +21,18 @@ public class UsersDAO {
 	final String FIND_USER_LOGIN = " SELECT uzytkownicy.id_u, uzytkownicy.imie, uzytkownicy.nazwisko, typy_konta.nazwa FROM uzytkownicy NATURAL JOIN loginy LEFT JOIN typy_konta ON typy_konta.id_t = uzytkownicy.id_tk ";
 	final String DELETE_USER_1 = "DELETE FROM loginy WHERE id_u=?"; // usuwamy z loginow
 	final String DELETE_USER_2 = "DELETE FROM uzytkownicy WHERE id_u=?"; // usuwamy z uzytkownikow
-	final String DELETE_USER_3 ="DELETE FROM wyplaty WHERE id_u=?"; // usuwamy z wyplat
-	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=? WHERE id_u=?"; 																								// hasla
-	final String EDIT_USER_2 = "UPDATE loginy SET haslo=? WHERE id_u=?";
-	final String GET_ACCOUNT_TYPE_ID="SELECT id_t FROM typy_konta WHERE nazwa=";
-	final String GET_CONTRACT_TYPE_ID="SELECT id_t FROM typy_umowy WHERE nazwa_skr=";
-	final String GET_USER_ID="SELECT id_u FROM uzytkownicy WHERE imie=? AND nazwisko=? AND  mail=? AND nr_konta=?";
-	final String ADD_USER_1="INSERT INTO uzytkownicy (imie,nazwisko,mail,nr_konta,wyplata_netto,stanowisko,id_t,id_tk) VALUES (?,?,?,?,?,?,?,?)"; // do tabeli uzytkownicy
-	final String ADD_USER_2="INSERT INTO loginy (id_u,login,haslo) VALUES(?,?,?)"; // do tabeli loginy
-	
-	
+	final String DELETE_USER_3 = "DELETE FROM wyplaty WHERE id_u=?"; // usuwamy z wyplat
+	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=?, wyplata_netto=?, stanowisko=? WHERE id_u=?"; // hasla
+	final String EDIT_USER_2 = "UPDATE loginy SET haslo=?, login=? WHERE id_u=?";
+	final String EDIT_USER_3 = "UPDATE loginy SET login=? WHERE id_u=?";
+	final String GET_ACCOUNT_TYPE_ID = "SELECT id_t FROM typy_konta WHERE nazwa=";
+	final String GET_CONTRACT_TYPE_ID = "SELECT id_t FROM typy_umowy WHERE nazwa_skr=";
+	final String GET_USER_ID = "SELECT id_u FROM uzytkownicy WHERE imie=? AND nazwisko=? AND  mail=? AND nr_konta=?";
+	final String ADD_USER_1 = "INSERT INTO uzytkownicy (imie,nazwisko,mail,nr_konta,wyplata_netto,stanowisko,id_t,id_tk) VALUES (?,?,?,?,?,?,?,?)"; // do
+																																					// tabeli
+																																					// uzytkownicy
+	final String ADD_USER_2 = "INSERT INTO loginy (id_u,login,haslo) VALUES(?,?,?)"; // do tabeli loginy
+
 	public List<User> findAll() {
 
 		return this.jdbc.query(GET_ALL_USERS, getMap());
@@ -48,34 +50,37 @@ public class UsersDAO {
 		return this.jdbc.query(GET_ALL_USERS + " WHERE uzytkownicy.id_u = \"" + id + "\"", getMap());
 	}
 
-	public void addUser(User us, ContractTypes ct, AccountTypes at) { 
-		jdbc.update(ADD_USER_1, us.getName(),us.getSurname(),us.getEmail(), us.getAccount_number(), us.getNet_salary(), us.getPosition(), ct.getId(), at.getId());
-		int new_user_id = jdbc.queryForObject(GET_USER_ID, Integer.class, us.getName(),us.getSurname(),us.getEmail(), us.getAccount_number());
-		jdbc.update(ADD_USER_2, new_user_id,us.getLogin(),us.getPassword());
+	public void addUser(User us, ContractTypes ct, AccountTypes at) {
+		jdbc.update(ADD_USER_1, us.getName(), us.getSurname(), us.getEmail(), us.getAccount_number(),
+				us.getNet_salary(), us.getPosition(), ct.getId(), at.getId());
+		int new_user_id = jdbc.queryForObject(GET_USER_ID, Integer.class, us.getName(), us.getSurname(), us.getEmail(),
+				us.getAccount_number());
+		jdbc.update(ADD_USER_2, new_user_id, us.getLogin(), us.getPassword());
 	}
 
 	public void deleteUser(int id) {
 		jdbc.update(DELETE_USER_3, id);
 		jdbc.update(DELETE_USER_1, id);
 		jdbc.update(DELETE_USER_2, id);
-		
+
 	}
 
-	public void editUser_1(int id, String name, String surname, String email, String account) {
-		jdbc.update(EDIT_USER_1, name, surname, email, account, id);
+	public void editUser_1(int id, String name, String login, String surname, String email, String account,String payment, String position) {
+		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, id);
+		jdbc.update(EDIT_USER_3, login, id);
 	}
-	
-	public void editUser_2(int id, String name, String surname, String email, String account, String password) {
-		jdbc.update(EDIT_USER_2, password,id);
-		jdbc.update(EDIT_USER_1, name, surname, email, account, id);
+
+	public void editUser_2(int id, String name, String login,String surname, String email, String account, String password,String payment, String position) {
+		jdbc.update(EDIT_USER_2, password,login, id);
+		jdbc.update(EDIT_USER_1, name, surname, email, account,payment,position, id);
 	}
-	
+
 	public int get_contract_type_id(String type) {
-		return this.jdbc.queryForObject(GET_CONTRACT_TYPE_ID+"\""+type+"\"", Integer.class);
+		return this.jdbc.queryForObject(GET_CONTRACT_TYPE_ID + "\"" + type + "\"", Integer.class);
 	}
-	
+
 	public int get_account_type_id(String type) {
-		return this.jdbc.queryForObject(GET_ACCOUNT_TYPE_ID+"\""+type+"\"", Integer.class);
+		return this.jdbc.queryForObject(GET_ACCOUNT_TYPE_ID + "\"" + type + "\"", Integer.class);
 	}
 
 	private RowMapper<User> getLoginMap() {

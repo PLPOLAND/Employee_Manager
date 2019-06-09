@@ -1,7 +1,6 @@
 package PWJ.Employee_Manager.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -244,27 +243,25 @@ public class MainController {
 	@RequestMapping("/editUser")
 	public String editUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Security sec = new Security(request, userdao);
-		PrintWriter out = response.getWriter();
-
+		Encryption ec = new Encryption();
 		if (sec.isLoged()) {
 			if (!sec.isUserAdmin()) {
 				return "redirect:/uhome";
 			} else {
 				int id = Integer.parseInt(request.getParameter("id"));
 				String name = request.getParameter("name");
+				String login = request.getParameter("login");
 				String surname = request.getParameter("surname");
-				String email = request.getParameter("email");
+				String email = request.getParameter("mail");
 				String account = request.getParameter("account");
-				String old_pass = request.getParameter("oldpassword");
-				String new_pass = request.getParameter("newpassword");
+				String pass = ec.encryptPassword(request.getParameter("password"));
+				String payment = request.getParameter("net_salary");
+				String position = request.getParameter("position");
 
-				if (old_pass.equals("")) { // gdy nie zmieniamy hasła
-					userdao.editUser_1(id, name, surname, email, account);
-				} else if (!old_pass.equals("") || !new_pass.equals("")) {
-					userdao.editUser_2(id, name, surname, email, account, new_pass);
-
-					// TODO: sprawdzanie czy stare haslo jest poprawne
-					// i wswietlenie komunikatu jesli okaze sie nieprawidlowe
+				if (pass.equals("")) { // gdy nie zmieniamy hasła
+					userdao.editUser_1(id, name, login,surname, email, account, payment, position);
+				} else if (!pass.equals("")){
+					userdao.editUser_2(id, name, login, surname, email, account, pass, payment, position);
 				}
 				return "redirect:/ahome";
 			}
