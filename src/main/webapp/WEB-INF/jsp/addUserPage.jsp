@@ -57,11 +57,11 @@
                     </tr>
                     <tr>
                         <td> Imie:</td>
-                        <td  class="pole_przycisku"><input type="text" name="name" required="required" pattern="[\\p{IsAlphabetic}\\s]+" maxlength="45"></td>
+                        <td  class="pole_przycisku"><input type="text" name="name" required="required" pattern="^[A-Za-z]+$" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> Nazwisko:</td>
-                        <td  class="pole_przycisku"><input type="text" name="surname" required="required" pattern="[\\p{IsAlphabetic}\\s]+" maxlength="45"></td>
+                        <td  class="pole_przycisku"><input type="text" name="surname" required="required" pattern="^[A-Za-z]+$" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> E-mail:</td>
