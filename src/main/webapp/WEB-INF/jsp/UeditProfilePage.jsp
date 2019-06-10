@@ -45,10 +45,14 @@
 			</div>
 		</div>
 
-		<div class="page">
+		
 			<c:forEach var="userval" items="${user}">
+			
 				<form action="UeditUser" method="POST">
-
+					<div class="page">
+					
+					<h2><font color="white">Edytuj profil</font></h2>
+					
 					<table>
 						<tr>
 							<td>Dane</td>
@@ -57,25 +61,25 @@
 						<tr>
 							<td><b> Imie:</b></td>
 							<td class="pole_przycisku">
-							<input type="hidden" name="id" value="${userval.getId() }">
-							<input type="hidden" name="login" value="${userval.getLogin() }">
-							<input type="text" name="name" required="required" pattern="^[A-Za-z]+$" maxlength="45"value="${userval.getName()}"></td>
+							<input type="hidden" name="id" value=" ${userval.getId() }">
+							<input type="hidden" name="login" value=" ${userval.getLogin() }">
+							<input type="text" name="name" required="required" pattern="^[A-Za-z]+$" maxlength="45"value=" ${userval.getName()}"></td>
 
 						</tr>
 						<tr>
 							<td><b> Nazwisko:</b></td>
 							<td class="pole_przycisku"><input type="text" name="surname"
-								required="required"  maxlength="45" value="${userval.getSurname()}"></td>
+								required="required"  maxlength="45" value=" ${userval.getSurname()}"></td>
 						</tr>
 						<tr>
 							<td><b> E-mail:</b></td>
 							<td class="pole_przycisku"><input type="text" name="mail"
-								required="required" maxlength="45" value="${userval.getEmail()}"></td>
+								required="required" maxlength="45" value=" ${userval.getEmail()}"></td>
 						</tr>
 						<tr>
 							<td><b> Nr konta:</b></td>
 							<td class="pole_przycisku"><input type="text" name="account"
-								required="required" pattern="^[0-9]+$" maxlength="26" value="${userval.getAccount_number()}"></td>
+								required="required" pattern="^[0-9]+$" maxlength="26" value=" ${userval.getAccount_number()}"></td>
 						</tr>
 						<tr>
 							<td><b> Nowe hasło: </b></td>
@@ -88,10 +92,11 @@
 								type="submit" name="send" value="Wyślij"></td>
 						</tr>
 					</table>
-
+					</div>
 				</form>
+				
 			</c:forEach>
-		</div>
+		
 	</div>
 
 </body>

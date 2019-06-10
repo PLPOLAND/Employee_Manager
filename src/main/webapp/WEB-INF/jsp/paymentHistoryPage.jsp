@@ -48,7 +48,7 @@
 		
 		
 		
-				<h2><font color="white">Moje wyplaty</font></h2>
+				<h2><font color="white">Moje wypłaty</font></h2>
 				<br />
 				<c:set var="count" value="1" scope="page" />
 				<table width="100%">
