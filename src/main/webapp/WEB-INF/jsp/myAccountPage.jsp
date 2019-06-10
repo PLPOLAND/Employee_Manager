@@ -44,12 +44,12 @@
 			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a></div>
 		</div>
 		
-		<div class="page">
+		<div class="myaccount-container">
 		
 		
 		<c:forEach var="userval" items="${user}">
-			<div class="myaccount-container">
-			<h3>Moje konto</h3>
+			
+			<h2><font color="white">Moje konto</font></h2>
 
 			<table>
 				<tr>
@@ -77,7 +77,7 @@
 					<td>${userval.getContract_type()}</td>
 				</tr>
 			</table>
-		</div>
+	
 		</c:forEach>
 		
 		
