@@ -25,6 +25,8 @@ public class UsersDAO {
 	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=?, wyplata_netto=?, stanowisko=? WHERE id_u=?"; // hasla
 	final String EDIT_USER_2 = "UPDATE loginy SET haslo=?, login=? WHERE id_u=?";
 	final String EDIT_USER_3 = "UPDATE loginy SET login=? WHERE id_u=?";
+	final String EDIT_USER_4 = "UPDATE loginy SET haslo=? WHERE id_u=?";
+	final String EDIT_USER_5 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=? WHERE id_u=?";
 	final String GET_ACCOUNT_TYPE_ID = "SELECT id_t FROM typy_konta WHERE nazwa=";
 	final String GET_CONTRACT_TYPE_ID = "SELECT id_t FROM typy_umowy WHERE nazwa_skr=";
 	final String GET_USER_ID = "SELECT id_u FROM uzytkownicy WHERE imie=? AND nazwisko=? AND  mail=? AND nr_konta=?";
@@ -65,14 +67,25 @@ public class UsersDAO {
 
 	}
 
-	public void editUser_1(int id, String name, String login, String surname, String email, String account,String payment, String position) {
+	public void editUser_1(int id, String name, String login, String surname, String email, String account,
+			String payment, String position) {
 		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, id);
 		jdbc.update(EDIT_USER_3, login, id);
 	}
 
-	public void editUser_2(int id, String name, String login,String surname, String email, String account, String password,String payment, String position) {
-		jdbc.update(EDIT_USER_2, password,login, id);
-		jdbc.update(EDIT_USER_1, name, surname, email, account,payment,position, id);
+	public void editUser_2(int id, String name, String login, String surname, String email, String account,
+			String password, String payment, String position) {
+		jdbc.update(EDIT_USER_2, password, login, id);
+		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, id);
+	}
+
+	public void editUser_3(int id, String name, String surname, String email, String account) {
+		jdbc.update(EDIT_USER_5, name, surname, email, account, id);
+	}
+
+	public void editUser_4(int id, String name, String surname, String email, String account, String password) {
+		jdbc.update(EDIT_USER_5, name, surname, email, account, id);
+		jdbc.update(EDIT_USER_4,password,id);
 	}
 
 	public int get_contract_type_id(String type) {

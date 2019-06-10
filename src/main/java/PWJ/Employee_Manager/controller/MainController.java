@@ -208,6 +208,11 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Funkcja przekierowująca do panelu edytowania konkretnego konta użytkownika [Panel Administratora]
+	 * 
+	 * @param id - ID uzytkownika
+	 */
 	@RequestMapping(value = "/edit")
 	public String editUserPage(@RequestParam("id") int id, HttpServletRequest request, Model model) {
 		Security sec = new Security(request, userdao);
@@ -226,6 +231,9 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Funkcja zwracająca panel edycji konta zwykłego użytkownika
+	 */
 	@RequestMapping("/Uedit")
 	public String UeditProfilePage(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
@@ -240,6 +248,9 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Funkcja bezpośrednio edytująca konto użytkownika [Panel Administratora]
+	 */
 	@RequestMapping("/editUser")
 	public String editUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Security sec = new Security(request, userdao);
@@ -259,8 +270,8 @@ public class MainController {
 				String position = request.getParameter("position");
 
 				if (pass.equals("")) { // gdy nie zmieniamy hasła
-					userdao.editUser_1(id, name, login,surname, email, account, payment, position);
-				} else if (!pass.equals("")){
+					userdao.editUser_1(id, name, login, surname, email, account, payment, position);
+				} else if (!pass.equals("")) {
 					userdao.editUser_2(id, name, login, surname, email, account, pass, payment, position);
 				}
 				return "redirect:/ahome";
@@ -270,6 +281,41 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Funkcja bezpośrednio edytująca konto zwykłego użytkownika 
+	 */
+	@RequestMapping("/UeditUser")
+	public String UeditUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Security sec = new Security(request, userdao);
+		Encryption ec = new Encryption();
+		if (sec.isLoged()) {
+			if (sec.isUserAdmin()) {
+				return "redirect:/ahome";
+			} else {
+				int id = Integer.parseInt(request.getParameter("id"));
+				String name = request.getParameter("name");			
+				String login = request.getParameter("login");
+				String surname = request.getParameter("surname");
+				String email = request.getParameter("mail");
+				String account = request.getParameter("account");
+				String pass = ec.encryptPassword(request.getParameter("password"));
+
+				if (pass.equals("")) { // gdy nie zmieniamy hasła
+					userdao.editUser_3(id, name, surname, email, account);
+					
+				} else if (!pass.equals("")) {
+					//userdao.editUser_2(id, name, login, surname, email, account, pass, payment, position);
+					userdao.editUser_4(id, name, surname, email, account, pass);
+							
+				}
+				return "redirect:/ahome";
+			}
+		} else {
+			return "redirect:/";
+		}
+	}
+	
+	
 	@RequestMapping("/APayment")
 	public String payment(Model model, HttpServletRequest request) {
 		Security sec = new Security(request, userdao);
@@ -280,7 +326,7 @@ public class MainController {
 			} else {
 
 				List<Salary> salary = salarydao.getUsersSalary();
-				BigDecimal bd = new BigDecimal(salarydao.getTotalPayment()).setScale(1,BigDecimal.ROUND_HALF_DOWN);
+				BigDecimal bd = new BigDecimal(salarydao.getTotalPayment()).setScale(1, BigDecimal.ROUND_HALF_DOWN);
 				model.addAttribute("userSalary", salary);
 				model.addAttribute("totalPayment", bd.doubleValue());
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
