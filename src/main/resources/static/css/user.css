@@ -142,8 +142,7 @@ body{
 .page > table td input{
 	height: 40px;
 	width: calc(100% - 1px);
-	background-color: #ffffff;
-	color: inherit;
+	color: #000000;
 	line-height: 40px;
 	margin:0px;
 	border: 0px;
@@ -152,8 +151,7 @@ body{
 .page > table td select{
 	height: 40px;
 	width: calc(100% - 1px);
-	background-color: #ffffff;
-	color: inherit;
+	color: #000000;
 	line-height: 40px;
 	margin:0px;
 	border: 0px;
@@ -234,14 +232,14 @@ body{
 	border: 0px;
 }
 .przcisk_submit{
-	font-size: medium;
 	cursor: pointer;
 }
 .przcisk_submit:focus{
 	background-color: #00000050;
 }
 .pole_przycisku {
-	background-color: #ffffff;
-	padding: 5px !important;
+	background-color: #00000050;
+	color: inherit;
+	padding: 0px !important;
 	margin: 0px;
 }
