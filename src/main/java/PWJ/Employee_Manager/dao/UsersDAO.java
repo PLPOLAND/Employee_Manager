@@ -22,7 +22,7 @@ public class UsersDAO {
 	final String DELETE_USER_1 = "DELETE FROM loginy WHERE id_u=?"; // usuwamy z loginow
 	final String DELETE_USER_2 = "DELETE FROM uzytkownicy WHERE id_u=?"; // usuwamy z uzytkownikow
 	final String DELETE_USER_3 = "DELETE FROM wyplaty WHERE id_u=?"; // usuwamy z wyplat
-	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=?, wyplata_netto=?, stanowisko=? WHERE id_u=?"; // hasla
+	final String EDIT_USER_1 = "UPDATE uzytkownicy SET imie=?,nazwisko=?,mail=?,nr_konta=?, wyplata_netto=?, stanowisko=?, id_t=?, id_tk=? WHERE id_u=?"; // hasla
 	final String EDIT_USER_2 = "UPDATE loginy SET haslo=?, login=? WHERE id_u=?";
 	final String EDIT_USER_3 = "UPDATE loginy SET login=? WHERE id_u=?";
 	final String EDIT_USER_4 = "UPDATE loginy SET haslo=? WHERE id_u=?";
@@ -68,15 +68,15 @@ public class UsersDAO {
 	}
 
 	public void editUser_1(int id, String name, String login, String surname, String email, String account,
-			String payment, String position) {
-		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, id);
+			String payment, String position, int at, int ct) {
+		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, ct, at,id);
 		jdbc.update(EDIT_USER_3, login, id);
 	}
 
 	public void editUser_2(int id, String name, String login, String surname, String email, String account,
-			String password, String payment, String position) {
+			String password, String payment, String position,int at, int ct) {
 		jdbc.update(EDIT_USER_2, password, login, id);
-		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, id);
+		jdbc.update(EDIT_USER_1, name, surname, email, account, payment, position, ct,at,id);
 	}
 
 	public void editUser_3(int id, String name, String surname, String email, String account) {

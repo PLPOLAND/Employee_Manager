@@ -272,11 +272,13 @@ public class MainController {
 				String pass = ec.encryptPassword(request.getParameter("password"));
 				String payment = request.getParameter("net_salary");
 				String position = request.getParameter("position");
+				int id_account_type=Integer.parseInt(request.getParameter("account_type"));
+				int id_contract_type=Integer.parseInt(request.getParameter("contract_type"));
 
 				if (pass.equals("")) { // gdy nie zmieniamy hasła
-					userdao.editUser_1(id, name, login, surname, email, account, payment, position);
+					userdao.editUser_1(id, name, login, surname, email, account, payment, position,id_account_type,id_contract_type);
 				} else if (!pass.equals("")) {
-					userdao.editUser_2(id, name, login, surname, email, account, pass, payment, position);
+					userdao.editUser_2(id, name, login, surname, email, account, pass, payment, position,id_account_type,id_contract_type);
 				}
 				return "redirect:/ahome";
 			}
