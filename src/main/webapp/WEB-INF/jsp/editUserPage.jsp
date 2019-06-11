@@ -10,13 +10,6 @@
 <html lang="pl">
 
 <head>
-	<!-- <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-	<!-- <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<c:url value="/css/admin.css" var="jstlCss" />
 	<link href="${jstlCss}" rel="stylesheet" />
 
@@ -93,12 +86,12 @@
 						<tr>
 							<td> Imie:</td>
 							<td class="pole_przycisku"><input type="text" name="name" required="required" maxlength="45"
-									value="${userval.getName()}"></td>
+									pattern="^[A-Za-z-ęóąśżćńł]+$" value="${userval.getName()}"></td>
 						</tr>
 						<tr>
 							<td> Nazwisko:</td>
 							<td class="pole_przycisku"><input type="text" name="surname" required="required"
-									maxlength="45" value="${userval.getSurname()}"></td>
+									maxlength="45" pattern="^[A-Za-z-ęóąśżćńł]+$" value="${userval.getSurname()}"></td>
 						</tr>
 						<tr>
 							<td> E-mail:</td>
@@ -108,25 +101,26 @@
 						<tr>
 							<td> Nr konta:</td>
 							<td class="pole_przycisku"><input type="text" name="account" required="required"
-									max="9999999999999999999999999" value="${userval.getAccount_number()}">
+									pattern="^[0-9]+$" maxlength="26" value="${userval.getAccount_number()}">
 							</td>
 						</tr>
 						<tr>
 							<td> Wypłata NETTO:</td>
-							<td class="pole_przycisku"><input type="text" name="net_salary" required="required"
-									value="${userval.getNet_salary()}"></td>
+							<td class="pole_przycisku"><input type="number" name="net_salary" required="required"
+									min="1" step="0.01"value="${userval.getNet_salary()}"></td>
 						</tr>
 						<tr>
 							<td>Stanowisko: </td>
 							<td class="pole_przycisku"><input type="text" name="position" required="required"
-									value="${userval.getPosition()}"></td>
+									pattern="^[A-Za-z-ęóąśżćńł\s]+$" value="${userval.getPosition()}"></td>
 						</tr>
 						<tr>
 							<td>Typ Umowy</td>
 							<td class="pole_przycisku">
 								<select name="contract_type" required="required">
-									<option>B2B</option>
-									<option>UZ</option>
+									 <c:forEach var="contractTypes" items="${contractTypes}">
+                                    <option ${userval.getContract_type() == contractTypes.getShort_name()  ? 'selected="selected"' : '' } value="${contractTypes.getId() }">${contractTypes.getShort_name()}</option>
+                                </c:forEach>
 								</select>
 							</td>
 						</tr>
@@ -134,8 +128,9 @@
 							<td>Typ Konta</td>
 							<td class="pole_przycisku">
 								<select name="account_type" required="required">
-									<option>Administrator</option>
-									<option>Użytkownik</option>
+									 <c:forEach var="accountTypes" items="${accountTypes}">
+                                    <option ${userval.getAccount_type() == accountTypes.getName()  ? 'selected="selected"' : '' } value="${accountTypes.getId()}">${accountTypes.getName()}</option>
+                                </c:forEach>
 								</select>
 							</td>
 						</tr>

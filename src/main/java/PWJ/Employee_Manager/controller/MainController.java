@@ -221,6 +221,10 @@ public class MainController {
 				return "redirect:/uhome";
 			} else {
 				List<User> user = userdao.find_user_by_id(id);
+				List<AccountTypes> ac = acdao.getAccountTypes();
+				List<ContractTypes> ct = ctdao.getContractTypes();
+				model.addAttribute("accountTypes", ac);
+				model.addAttribute("contractTypes", ct);
 				model.addAttribute("user", user);
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());
 				return "editUserPage";

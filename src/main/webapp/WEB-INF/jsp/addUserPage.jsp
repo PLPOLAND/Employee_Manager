@@ -10,13 +10,6 @@
 <html lang="pl">
 
 <head>
-    <!-- <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-    <!-- <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <c:url value="/css/admin.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
 
@@ -73,12 +66,12 @@
                     <tr>
                         <td> Imie:</td>
                         <td class="pole_przycisku"><input type="text" name="name" required="required"
-                                pattern="^[A-Za-z]+$" maxlength="45"></td>
+                                pattern="^[A-Za-z-ęóąśżćńł]+$" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> Nazwisko:</td>
                         <td class="pole_przycisku"><input type="text" name="surname" required="required"
-                                pattern="^[A-Za-z]+$" maxlength="45"></td>
+                                pattern="^[A-Za-z-ęóąśżćńł]+$" maxlength="45"></td>
                     </tr>
                     <tr>
                         <td> E-mail:</td>
@@ -93,11 +86,11 @@
                     <tr>
                         <td> Wypłata NETTO:</td>
                         <td class="pole_przycisku" lang="en-US"><input type="number" name="net_salary" min="1"
-                                step="0.5" required="required"></td>
+                                step="0.01" required="required"></td>
                     </tr>
                     <tr>
                         <td>Stanowisko: </td>
-                        <td class="pole_przycisku"><input type="text" name="position" pattern="^[A-Za-z\s]+$"
+                        <td class="pole_przycisku"><input type="text" name="position" pattern="^[A-Za-z-ęóąśżćńł\s]+$"
                                 required="required"></td>
                     </tr>
                     <tr>
