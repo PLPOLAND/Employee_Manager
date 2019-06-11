@@ -65,16 +65,23 @@ body{
 	display: block;
 	float: right;
 	background-color: #0062cc;
+	color: #FFFFFF;
 	height: 40px;
 	max-width: 20%;
 	font-size: 18px;
 	line-height: 200%;
 	padding: 0px 5px 0px 5px;
 	cursor: default;
+
+	
+	border-left-style: solid;
+	border-left-color: #000000;
+	border-left-width: 1px;
+
 }
 .dane:hover{
 	background-color: #004896;
-	cursor: default;
+	cursor: pointer;
 }
 .page{
 	display: block;

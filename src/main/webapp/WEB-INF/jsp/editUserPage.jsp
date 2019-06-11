@@ -10,26 +10,26 @@
 <html lang="pl">
 
 <head>
-<!-- <link
+	<!-- <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<!-- <script
+	<!-- <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<c:url value="/css/user.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
+	<c:url value="/css/user.css" var="jstlCss" />
+	<link href="${jstlCss}" rel="stylesheet" />
 
-<script type="text/javascript">
-	function confirmation(userID) {
-		var retVal = confirm("Czy chcesz edytowac tego uzytkownika?");
-		if (retVal == true) {
-			return true;
-		} else {
-			return false;
+	<script type="text/javascript">
+		function confirmation(userID) {
+			var retVal = confirm("Czy chcesz edytowac tego uzytkownika?");
+			if (retVal == true) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-	}
-</script>
+	</script>
 </head>
 
 
@@ -41,12 +41,12 @@
 			<div class="menu">
 				<ol>
 					<a href="/ahome">
-						<li><img src="/logoinwebapp/logo2.png" width="30" height="30" class="d-inline-block mr-1 align-bottom"
-								alt="">
+						<li><img src="/logoinwebapp/logo2.png" width="30" height="30"
+								class="d-inline-block mr-1 align-bottom" alt="">
 							<font face="WildWest" size="5"><b>MAMR</b> Employee Manager</font>
 						</li>
 					</a>
-		
+
 					<a href="/ahome">
 						<li>Dane użytkowników</li>
 					</a>
@@ -61,8 +61,9 @@
 					</a>
 				</ol>
 			</div>
-			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a>
-			</div>
+			<a href="/logout" title="Wyloguj">
+				<div class="dane">${userName}</div>
+			</a>
 		</div>
 
 		<c:forEach var="userval" items="${user}">
@@ -80,36 +81,45 @@
 						</tr> -->
 						<tr>
 							<td>Login</td>
-							<td class="pole_przycisku"><input type="hidden" name="id" value="${userval.getId() }"> <input type="text" name="login" required="required" maxlength="30" value="${userval.getLogin()}"></td>
+							<td class="pole_przycisku"><input type="hidden" name="id" value="${userval.getId() }">
+								<input type="text" name="login" required="required" maxlength="30"
+									value="${userval.getLogin()}"></td>
 						</tr>
 						<tr>
 							<td> Hasło: </td>
-							<td class="pole_przycisku"><input type="password" name="password" autocomplete="new-password" maxlength="30"></td>
+							<td class="pole_przycisku"><input type="password" name="password"
+									autocomplete="new-password" maxlength="30"></td>
 						</tr>
 						<tr>
 							<td> Imie:</td>
-							<td class="pole_przycisku"><input type="text" name="name" required="required" maxlength="45" value="${userval.getName()}"></td>
+							<td class="pole_przycisku"><input type="text" name="name" required="required" maxlength="45"
+									value="${userval.getName()}"></td>
 						</tr>
 						<tr>
 							<td> Nazwisko:</td>
-							<td class="pole_przycisku"><input type="text" name="surname" required="required" maxlength="45" value="${userval.getSurname()}"></td>
+							<td class="pole_przycisku"><input type="text" name="surname" required="required"
+									maxlength="45" value="${userval.getSurname()}"></td>
 						</tr>
 						<tr>
 							<td> E-mail:</td>
-							<td class="pole_przycisku"><input type="email" name="mail" required="required" maxlength="45" value="${userval.getEmail()}"></td>
+							<td class="pole_przycisku"><input type="email" name="mail" required="required"
+									maxlength="45" value="${userval.getEmail()}"></td>
 						</tr>
 						<tr>
 							<td> Nr konta:</td>
-							<td class="pole_przycisku"><input type="text" name="account" required="required" max="9999999999999999999999999" value="${userval.getAccount_number()}">
+							<td class="pole_przycisku"><input type="text" name="account" required="required"
+									max="9999999999999999999999999" value="${userval.getAccount_number()}">
 							</td>
 						</tr>
 						<tr>
 							<td> Wypłata NETTO:</td>
-							<td class="pole_przycisku"><input type="text" name="net_salary" required="required" value="${userval.getNet_salary()}"></td>
+							<td class="pole_przycisku"><input type="text" name="net_salary" required="required"
+									value="${userval.getNet_salary()}"></td>
 						</tr>
 						<tr>
 							<td>Stanowisko: </td>
-							<td class="pole_przycisku"><input type="text" name="position" required="required" value="${userval.getPosition()}"></td>
+							<td class="pole_przycisku"><input type="text" name="position" required="required"
+									value="${userval.getPosition()}"></td>
 						</tr>
 						<tr>
 							<td>Typ Umowy</td>
@@ -131,8 +141,7 @@
 						</tr>
 						<tr>
 							<td>Zapisz zmiany:</td>
-							<td><input type="submit" name="send" value="Zapisz"
-								onclick="{return confirmation();}"></td>
+							<td><input type="submit" name="send" value="Zapisz" onclick="{return confirmation();}"></td>
 						</tr>
 					</table>
 				</div>
@@ -140,4 +149,5 @@
 		</c:forEach>
 	</div>
 </body>
+
 </html>

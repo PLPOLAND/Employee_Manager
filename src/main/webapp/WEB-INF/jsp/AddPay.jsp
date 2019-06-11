@@ -60,12 +60,13 @@
                     </a>
                 </ol>
             </div>
-            <div class="dane"><a href="/logout" title="Wyloguj"
-                    style="color:white;text-decoration:underline;">${userName}</a></div>
+            <a href="/logout" title="Wyloguj">
+                <div class="dane">${userName}</div>
+            </a>
         </div>
         <div class="page">
             <table>
-                <form method="POST" action="/AddP" autocomplete="off"> 
+                <form method="POST" action="/AddP" autocomplete="off">
                     <tr>
                         <td>Dane</td>
                         <td>Edycja</td>
@@ -74,24 +75,27 @@
                         <td>Numer Konta Bankowego</td>
                         <td class="pole_przycisku">
                             <select name="userID" required="required">
-                               <c:forEach var="us" items="${userList}">
-                               <option value="${us.getId() }"> ${us.getName()} ${us.getSurname() } - ${us.getAccount_number() } </option>
-                               </c:forEach>
+                                <c:forEach var="us" items="${userList}">
+                                    <option value="${us.getId() }"> ${us.getName()} ${us.getSurname() } -
+                                        ${us.getAccount_number() } </option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Data</td>
-                        <td class="pole_przycisku"><input type="date" name="date" required="required" ></td>
+                        <td class="pole_przycisku"><input type="date" name="date" required="required"></td>
                     </tr>
                     </tr>
                     <tr>
                         <td>Kwota</td>
-                        <td class="pole_przycisku"><input type="text" name="ammount" required="required" maxlength="30"></td>
+                        <td class="pole_przycisku"><input type="text" name="ammount" required="required" maxlength="30">
+                        </td>
                     </tr>
                     <tr>
                         <td>Dodaj Płacę:</td>
-                        <td class="pole_przycisku"><input class="przcisk_submit" type="submit" name="send" value="Dodaj"></td>
+                        <td class="pole_przycisku"><input class="przcisk_submit" type="submit" name="send"
+                                value="Dodaj"></td>
                     </tr>
                 </form>
             </table>

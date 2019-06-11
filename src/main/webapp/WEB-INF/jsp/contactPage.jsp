@@ -10,15 +10,15 @@
 <html lang="pl">
 
 <head>
-<!-- <link
+	<!-- <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<!-- <script
+	<!-- <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<c:url value="/css/user.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
+	<c:url value="/css/user.css" var="jstlCss" />
+	<link href="${jstlCss}" rel="stylesheet" />
 
 
 
@@ -26,34 +26,42 @@
 
 <body>
 
-<div class="container">
-	
+	<div class="container">
+
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="/uhome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
-					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
-	
-					<a href="/myaccount"><li>Moje konto</li></a>
-					<a href="/Uedit"><li>Edytuj profil</li></a>
-					<a href="/paymenthistory"><li>Historia wypłat</li></a>
-					<a href="/contact"><li>Kontakt</li></a>
-					
+					<a href="/uhome">
+						<li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
+							<font face="WildWest" size="5"><b>MAMR</b> Employee Manager</font>
+						</li>
+					</a>
+
+					<a href="/myaccount">
+						<li>Moje konto</li>
+					</a>
+					<a href="/Uedit">
+						<li>Edytuj profil</li>
+					</a>
+					<a href="/paymenthistory">
+						<li>Historia wypłat</li>
+					</a>
+					<a href="/contact">
+						<li>Kontakt</li>
+					</a>
+
 				</ol>
 			</div>
-			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a></div>
+			<a href="/logout" title="Wyloguj"></a>
+			<div class="dane">${userName}</div></a>
 		</div>
-		
+
 		<div class="page">
-			
-			
+
+
 		</div>
 	</div>
 
 </body>
 
 </html>
-
-
-
-
