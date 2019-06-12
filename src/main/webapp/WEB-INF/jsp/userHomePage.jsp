@@ -48,7 +48,13 @@
 		</div>
 
 		<div class="page">
-
+			
+			<div class="welcomepage-container">
+				<h1>
+					<font color="white"><u> Witaj, użytkowniku ${userName}! </u></font>
+				</h1>
+			
+			</div>
 
 		</div>
 	</div>
