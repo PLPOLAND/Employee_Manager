@@ -12,9 +12,6 @@
 <head>
 	<c:url value="/css/user.css" var="jstlCss" />
 	<link href="${jstlCss}" rel="stylesheet" />
-
-
-
 </head>
 
 <body>
@@ -45,15 +42,40 @@
 
 				</ol>
 			</div>
-			<a href="/logout" title="Wyloguj"></a>
-			<div class="dane">${userName}</div></a>
+			<a href="/logout" title="Wyloguj">
+				<div class="dane">${userName}</div>
+			</a>
 		</div>
 
 		<div class="page">
+			
 
 
+			<h2>
+				<font color="white">Kontakt</font>
+			</h2>
+			
+			<div class="contactpage-container">
+				
+				<p>MAMR Employee Manager sp. z.o.o<br>
+				ul. Wałbrzyska 23, 01-820 Warszawa<br>
+				NIP: 113-19-74-684<br>
+				REGON: 015554383<br>
+				NR KONTA: 88 4500 2017 0000 1302 0684 1300</p>
+				<p><u>Aleksander Nowak</u><br>
+				Tel: 663 545 600<br>
+				Email: aleksandernowak_mamr@biuro.mamr.pl</p>
+				<p><h3>mamr.pl</h3></p>
+			
+			</div>
+			
+			
+			
 		</div>
+
+
 	</div>
+
 
 </body>
 
