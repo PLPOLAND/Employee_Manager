@@ -10,73 +10,75 @@
 <html lang="pl">
 
 <head>
-<!-- <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<!-- <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<c:url value="/css/user.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
-
-
-
+	<c:url value="/css/user.css" var="jstlCss" />
+	<link href="${jstlCss}" rel="stylesheet" />
 </head>
 
 <body>
 
-<div class="container">
-	
+	<div class="container">
+
 		<div class="banner">
 			<div class="menu">
 				<ol>
-					<a href="/uhome"><li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
-					<font face = "WildWest" size = "5"><b>MAMR</b> Employee Manager</font></li></a>
-	
-					<a href="/myaccount"><li>Moje konto</li></a>
-					<a href="/Uedit"><li>Edytuj profil</li></a>
-					<a href="/paymenthistory"><li>Historia wypłat</li></a>
-					<a href="/contact"><li>Kontakt</li></a>
-					
+					<a href="/uhome">
+						<li><img src="/logoinwebapp/logo2.png" width="30" height="30" alt="">
+							<font face="WildWest" size="5"><b>MAMR</b> Employee Manager</font>
+						</li>
+					</a>
+
+					<a href="/myaccount">
+						<li>Moje konto</li>
+					</a>
+					<a href="/Uedit">
+						<li>Edytuj profil</li>
+					</a>
+					<a href="/paymenthistory">
+						<li>Historia wypłat</li>
+					</a>
+					<a href="/contact">
+						<li>Kontakt</li>
+					</a>
+
 				</ol>
 			</div>
-			<div class="dane"><a href="/logout" title="Wyloguj" style="color:white;text-decoration:underline;">${userName}</a></div>
+			<a href="/logout" title="Wyloguj">
+				<div class="dane">${userName}</div>
+			</a>
 		</div>
-		
+
 		<div class="page">
-		
-		
-		
-				<h2><font color="white">Moje wypłaty</font></h2>
-				<br />
-				<c:set var="count" value="1" scope="page" />
-				<table width="100%">
+
+
+
+			<h2>
+				<font color="white">Moje wypłaty</font>
+			</h2>
+			<br />
+			<c:set var="count" value="1" scope="page" />
+			<table width="100%">
+				<tr>
+					<th>ID</th>
+					<th>Data wypłaty</th>
+					<th>Kwota netto</th>
+					<th>Kwota brutto</th>
+				</tr>
+				<c:forEach var="userval" items="${userSalary}">
 					<tr>
-						<th>ID</th>
-						<th>Data wypłaty</th>
-						<th>Kwota netto</th>
-						<th>Kwota brutto</th>
+						<td>${count}</td>
+						<td>${userval.getPayday()}</td>
+						<td>${userval.getNet_salary()}zł</td>
+						<td>${userval.getGross_salary()}zł</td>
 					</tr>
-					<c:forEach var="userval" items="${userSalary}">
-						<tr>
-							<td>${count}</td>
-							<td>${userval.getPayday()}</td>
-							<td>${userval.getNet_salary()}zł</td>
-							<td>${userval.getGross_salary()}zł</td>
-						</tr>
-						<c:set var="count" value="${count + 1}" scope="page" />
-					</c:forEach>
-				</table>
-			</div>
-		
-		
+					<c:set var="count" value="${count + 1}" scope="page" />
+				</c:forEach>
+			</table>
 		</div>
-	
+
+
+	</div>
+
 
 </body>
 
 </html>
-
-
-
