@@ -17,7 +17,7 @@ public class UsersDAO {
 	@Autowired
 	private JdbcTemplate jdbc;
 
-	final String GET_ALL_USERS = "SELECT loginy.login, uzytkownicy.id_u, imie, nazwisko, haslo, mail, nr_konta, wyplata_netto, stanowisko, typy_umowy.nazwa_skr, typy_konta.nazwa FROM uzytkownicy LEFT JOIN loginy ON loginy.id_u = uzytkownicy.id_u LEFT JOIN typy_umowy ON uzytkownicy.id_t=typy_umowy.id_t LEFT JOIN typy_konta ON uzytkownicy.id_tk = typy_konta.id_t";
+	final String GET_ALL_USERS = "SELECT loginy.login, uzytkownicy.id_u, imie, nazwisko, haslo, mail, nr_konta, wyplata_netto, stanowisko, typy_umowy.nazwa_skr, typy_umowy.procent_podatku, typy_konta.nazwa FROM uzytkownicy LEFT JOIN loginy ON loginy.id_u = uzytkownicy.id_u LEFT JOIN typy_umowy ON uzytkownicy.id_t=typy_umowy.id_t LEFT JOIN typy_konta ON uzytkownicy.id_tk = typy_konta.id_t";
 	final String FIND_USER_LOGIN = " SELECT uzytkownicy.id_u, uzytkownicy.imie, uzytkownicy.nazwisko, typy_konta.nazwa FROM uzytkownicy NATURAL JOIN loginy LEFT JOIN typy_konta ON typy_konta.id_t = uzytkownicy.id_tk ";
 	final String DELETE_USER_1 = "DELETE FROM loginy WHERE id_u=?"; // usuwamy z loginow
 	final String DELETE_USER_2 = "DELETE FROM uzytkownicy WHERE id_u=?"; // usuwamy z uzytkownikow
@@ -119,7 +119,7 @@ public class UsersDAO {
 			user.setEmail(rs.getString("mail"));
 			user.setAccount_number(rs.getString("nr_konta"));
 			user.setNet_salary(rs.getDouble("wyplata_netto"));
-			user.setGross_salary(rs.getDouble("wyplata_netto") * 1.18); // 18% podatku?
+			user.setGross_salary(rs.getDouble("wyplata_netto"), rs.getDouble("procent_podatku")); // 18% podatku?
 			user.setPosition(rs.getString("stanowisko"));
 			user.setContract_type(rs.getString("nazwa_skr"));
 			user.setAccount_type(rs.getString("nazwa"));

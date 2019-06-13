@@ -332,7 +332,7 @@ public class MainController {
 			} else {
 
 				List<Salary> salary = salarydao.getUsersSalary();
-				BigDecimal bd = new BigDecimal(salarydao.getTotalPayment()).setScale(1, BigDecimal.ROUND_HALF_DOWN);
+				BigDecimal bd = new BigDecimal(salarydao.getTotalPayment()).setScale(2, BigDecimal.ROUND_HALF_DOWN);
 				model.addAttribute("userSalary", salary);
 				model.addAttribute("totalPayment", bd.doubleValue());
 				model.addAttribute("userName", sec.getUserName() + " " + sec.getUserSurName());

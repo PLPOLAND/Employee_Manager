@@ -1,5 +1,7 @@
 package PWJ.Employee_Manager.model;
 
+import java.math.BigDecimal;
+
 public class User {
 
 	private int id;
@@ -9,7 +11,7 @@ public class User {
 	private String email;
 	private String password;
 	private String account_number;
-	private double gross_salary; // brutto
+	private BigDecimal gross_salary; // brutto
 	private double net_salary; // netto
 	private String position; // stanowisko
 	private String contract_type;
@@ -71,12 +73,12 @@ public class User {
 		this.account_number = account_number;
 	}
 
-	public double getGross_salary() {
+	public BigDecimal getGross_salary() {
 		return gross_salary;
 	}
 
-	public void setGross_salary(double gross_salary) {
-		this.gross_salary = gross_salary;
+	public void setGross_salary(double gross_salary, double procent) {
+		this.gross_salary = new BigDecimal(gross_salary+ (gross_salary * procent)).setScale(2, BigDecimal.ROUND_DOWN);
 	}
 
 	public double getNet_salary() {

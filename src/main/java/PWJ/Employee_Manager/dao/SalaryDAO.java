@@ -49,7 +49,7 @@ public class SalaryDAO {
 			salary.setPayday(rs.getString("data_wyplaty"));
 			salary.setNet_salary(rs.getDouble("kwota_netto"));
 			salary.setTax(rs.getDouble("procent_podatku"));
-			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(1,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
+			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(2,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
 			
 			salary.setGross_salary(bd.doubleValue());
 
@@ -68,7 +68,7 @@ public class SalaryDAO {
 			salary.setPayday(rs.getString("data_wyplaty"));
 			salary.setNet_salary(rs.getDouble("kwota_netto"));
 			salary.setTax(rs.getDouble("procent_podatku"));
-			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(1,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
+			BigDecimal bd = new BigDecimal(salary.getNet_salary() * (1 + salary.getTax())).setScale(2,BigDecimal.ROUND_HALF_DOWN); // zaokraglenie do 1 miejsca po przecinku
 			salary.setGross_salary(bd.doubleValue());
 			salary.setUserAccount(rs.getString("nr_konta"));
 			salary.setUserContractType(rs.getString("nazwa_skr"));;
